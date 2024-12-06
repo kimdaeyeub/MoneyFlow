@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .btn-bg {
+    @apply bg-gradient-to-tl to-[#FF7000] from-[#E2995F];
+  }
+}
