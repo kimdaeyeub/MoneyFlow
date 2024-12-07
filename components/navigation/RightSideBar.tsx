@@ -12,7 +12,7 @@ const tags = ["교육", "취미", "음식", "생필품", "도서", "교통비"];
 
 const RightSideBar = () => {
   return (
-    <nav className="sticky right-0 top-0 h-screen border-l shadow-sm pt-32 px-7 lg:w-[266px]">
+    <nav className="sticky right-0 top-0 h-screen border-l shadow-sm pt-36 px-7 lg:w-[266px]">
       <h1 className="font-bold text-xl">Category</h1>
       <ul className="flex flex-col justify-start items-start gap-5 mt-7">
         {tags.map((tag, index) => (
