@@ -9,7 +9,7 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="w-full px-7 py-5 fixed shadow-md z-50 bg-white flex justify-between items-center">
+    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white flex justify-between items-center">
       <p className="text-2xl font-bold">
         Money<span className="text-[#FF7000]">Flow</span>
       </p>
