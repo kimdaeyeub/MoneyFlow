@@ -7,12 +7,19 @@
 
 import DashboardView from "@/components/views/DashboardView";
 import GraphView from "@/components/views/GraphView";
+import TodayView from "@/components/views/TodayView";
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: {
+  searchParams: { view: string };
+}) {
+  console.log(searchParams.view);
   return (
     <section>
-      {/* <DashboardView /> */}
-      <GraphView />
+      {searchParams.view === "dashboard" && <DashboardView />}
+      {searchParams.view === "graph view" && <GraphView />}
+      {searchParams.view === "today" && <TodayView />}
     </section>
   );
 }
