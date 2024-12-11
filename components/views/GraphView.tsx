@@ -2,6 +2,7 @@
 작성자: 김대엽
 파일의 역할: 홈화면에 그래프 뷰에 들어갈 그래프
 생성 일자: 2024-12-10
+수정 일자: 2024-12-11
  */
 
 "use client";
@@ -191,7 +192,7 @@ const GraphView = () => {
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px] w-full"
+          className="aspect-auto h-[450px] w-full"
         >
           <AreaChart data={filteredData}>
             <defs>
