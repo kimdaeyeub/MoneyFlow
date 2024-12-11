@@ -16,7 +16,7 @@ const NavLink = ({ item }: { item: string }) => {
           : "font-medium"
       }`}
     >
-      {item === "Dashboard" ? item : `${item} View`}
+      {item}
     </Link>
   );
 };

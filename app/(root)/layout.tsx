@@ -1,3 +1,10 @@
+/*
+작성자: 김대엽
+파일의 역할: 사이드바와 상단바를 포함한 레이아웃
+생성 일자: 2024-12-06
+수정 일자: 2024-12-11
+ */
+
 import LeftSideBar from "@/components/navigation/LeftSideBar";
 import Navbar from "@/components/navigation/Navbar";
 import RightSideBar from "@/components/navigation/RightSideBar";
@@ -15,6 +22,13 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         <RightSideBar />
       </div>
     </main>
+    // <SidebarProvider>
+    //   <AppSidebar />
+    //   <main>
+    //     <SidebarTrigger />
+    //     {children}
+    //   </main>
+    // </SidebarProvider>
   );
 };
 
