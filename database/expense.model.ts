@@ -14,7 +14,7 @@ const ExpenseSchema = new Schema(
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     money: { type: Number },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Expense = models?.Expense || model<IExpense>("Expense", ExpenseSchema);

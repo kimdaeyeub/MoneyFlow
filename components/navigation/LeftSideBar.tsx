@@ -8,16 +8,36 @@
 
 import React from "react";
 import NavLink from "./NavLink";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ExpenseForm } from "../forms/ExpenseForm";
 
 const lists: string[] = ["Dashboard", "Graph View", "Today", "This Week"];
 
 const LeftSideBar = () => {
   return (
-    <div className="sticky left-0 top-0 h-screen border-r shadow-sm pt-36 px-7 flex flex-col justify-start items-center gap-6 lg:w-[266px]">
-      {lists.map((item) => (
-        <NavLink key={item} item={item} />
-      ))}
-    </div>
+    <section className="sticky left-0 top-0 h-screen border-r shadow-sm pt-32 px-7 flex flex-col justify-between items-center lg:w-[266px] pb-10">
+      <div className="flex flex-col justify-start items-center gap-6 w-full">
+        {lists.map((item) => (
+          <NavLink key={item} item={item} />
+        ))}
+      </div>
+      <Dialog>
+        <DialogTrigger className="w-full">
+          <div className="text-center text-lg w-full py-3 btn-bg font-bold text-white rounded-lg">
+            Add Expense
+          </div>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Add Expense</DialogTitle>
+          <ExpenseForm />
+        </DialogContent>
+      </Dialog>
+    </section>
   );
 };
 
