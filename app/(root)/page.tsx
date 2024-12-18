@@ -9,12 +9,27 @@ import DashboardView from "@/components/views/DashboardView";
 import GraphView from "@/components/views/GraphView";
 import TodayView from "@/components/views/TodayView";
 import WeeklyView from "@/components/views/WeeklyView";
+import db from "@/lib/db";
 
-export default function Home({
+const addUserForTest = async () => {
+  const newUser = await db.user.create({
+    data: {
+      name: "kim",
+      username: "kimdaeyeub",
+      email: "kdy@naver.com",
+      password: "helloWorld",
+    },
+  });
+  return newUser;
+};
+
+export default async function Home({
   searchParams,
 }: {
   searchParams: { view: string };
 }) {
+  const newUser = await addUserForTest();
+  console.log(newUser, { message: "success" });
   return (
     <section>
       {searchParams.view === "dashboard" && <DashboardView />}

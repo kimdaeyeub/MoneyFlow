@@ -28,7 +28,7 @@ export function ExpenseForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
-      //   category: "",
+      category: "",
       //   date: new Date.now(),
       expense: 0,
     },
@@ -77,7 +77,7 @@ export function ExpenseForm() {
             <FormItem>
               <FormLabel>expense</FormLabel>
               <FormControl>
-                <Input placeholder="expense" {...field} />
+                <Input type="number" placeholder="expense" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
