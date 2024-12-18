@@ -8,11 +8,33 @@ datasource db {
 }
 
 model User {
-  id         String   @id @unique @default(uuid())
+  id         String   @id @default(uuid())
   name       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   email      String
   username   String
   password   String
+}
+
+// 지출, 목표지출, 카테고리
+model Expense {
+  id         String   @id @default(uuid())
+  name       String
+  date       String
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+}
+
+model Category {
+  id      String    @id @default(uuid())
+  name    String
+  expense Expense[]
+}
+
+model Goal {
+  id    String @id @default(uuid())
+  week  Int
+  day   Int
+  month Int
 }
