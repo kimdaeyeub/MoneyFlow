@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 홈화면에 들어갈 원형 progress graph
 생성 일자: 2024-12-07
-수정 일자: 2024-12-08
+수정 일자: 2024-12-18
  */
 
 "use client";
@@ -72,14 +72,15 @@ const CircleProgressChart = ({
                     <tspan
                       x={viewBox.cx}
                       y={viewBox.cy}
-                      className="fill-foreground text-2xl font-bold"
+                      className="fill-current text-black dark:text-white text-2xl font-bold"
                     >
                       {value}
                     </tspan>
                     <tspan
                       x={viewBox.cx}
                       y={(viewBox.cy || 0) + 24}
-                      className="fill-muted-foreground"
+                      // className="fill-muted-foreground"
+                      className="text-black dark:text-white fill-current"
                     >
                       {text}
                     </tspan>
