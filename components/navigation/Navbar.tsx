@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 루트레이아웃에서 로고 및 로그인 버튼 다크 모드 토글 검색 바 등을 포함한 상단바이다.
 생성 일자: 2024-12-06
-수정 일자: 2024-12-18
+수정 일자: 2024-12-19
  */
 
 import React from "react";
@@ -17,7 +17,7 @@ const Navbar = () => {
       <input
         type="text"
         placeholder="Search anything..."
-        className="w-2/4 px-3 py-3 rounded-md bg-gray-100 border outline-none"
+        className="w-2/4 px-3 py-3 rounded-md bg-gray-100 dark:bg-gray-900 dark:border-gray-700 border outline-none"
       />
       <div className="flex gap-4 items-center">
         <Theme />
