@@ -63,3 +63,20 @@ export const getExpensesList = async () => {
 
   return expenses;
 };
+
+export const getTodayExpenses = async () => {
+  const expenses = await db.expense.findMany({
+    where: {
+      date: new Date(),
+    },
+    include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  return expenses;
+};

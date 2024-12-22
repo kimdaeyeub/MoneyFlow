@@ -21,7 +21,13 @@ interface IProp {
 }
 
 const ExpenseList = ({ expenses }: IProp) => {
-  console.log(expenses);
+  if (expenses.length === 0) {
+    return (
+      <div className="text-center mt-14 font-medium text-gray-400">
+        지출 내역이 존재하지 않습니다.
+      </div>
+    );
+  }
   return (
     <Table className="mt-6">
       {/* <TableCaption>A list of your recent invoices.</TableCaption> */}

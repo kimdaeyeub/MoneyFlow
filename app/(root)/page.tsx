@@ -9,7 +9,10 @@ import DashboardView from "@/components/views/DashboardView";
 import GraphView from "@/components/views/GraphView";
 import TodayView from "@/components/views/TodayView";
 import WeeklyView from "@/components/views/WeeklyView";
-import { getExpensesList } from "@/lib/actions/expense.action";
+import {
+  getExpensesList,
+  getTodayExpenses,
+} from "@/lib/actions/expense.action";
 import { redirect } from "next/navigation";
 
 export default async function Home({
@@ -20,21 +23,29 @@ export default async function Home({
   if (!searchParams.view) {
     redirect("/?view=dashboard");
   }
+
   if (searchParams.view === "dashboard") {
     const expenses: Expense[] = await getExpensesList();
 
     return (
       <section>
-        {searchParams.view === "dashboard" && (
-          <DashboardView expenses={expenses} />
-        )}
+        <DashboardView expenses={expenses} />
+      </section>
+    );
+  }
+
+  if (searchParams.view === "today") {
+    const expenses: Expense[] = await getTodayExpenses();
+
+    return (
+      <section>
+        <TodayView expenses={expenses} />
       </section>
     );
   }
   return (
     <section>
       {searchParams.view === "graph view" && <GraphView />}
-      {searchParams.view === "today" && <TodayView />}
       {searchParams.view === "this week" && <WeeklyView />}
     </section>
   );

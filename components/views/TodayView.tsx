@@ -1,11 +1,22 @@
+/*
+작성자: 김대엽
+파일의 역할: 하루동안의 지출 내역을 보여줄 컴포넌트이다.
+생성 일자: 2024-12-11
+수정 일자: 2024-12-22
+ */
+
 import React from "react";
 import ExpenseList from "../ExpenseList";
 
-const TodayView = () => {
+interface IProp {
+  expenses: Expense[];
+}
+
+const TodayView = ({ expenses }: IProp) => {
   return (
     <>
       <h1 className="font-bold text-2xl ml-3">오늘 지출 현황</h1>
-      <ExpenseList />
+      <ExpenseList expenses={expenses} />
     </>
   );
 };
