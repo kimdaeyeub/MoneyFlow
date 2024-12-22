@@ -11,6 +11,7 @@ import TodayView from "@/components/views/TodayView";
 import WeeklyView from "@/components/views/WeeklyView";
 import {
   getExpensesList,
+  getThisWeekExpenses,
   getTodayExpenses,
 } from "@/lib/actions/expense.action";
 import { redirect } from "next/navigation";
@@ -43,10 +44,16 @@ export default async function Home({
       </section>
     );
   }
+  if (searchParams.view === "this week") {
+    const expenses: Expense[] = await getThisWeekExpenses();
+
+    return (
+      <section>
+        <WeeklyView expenses={expenses} />
+      </section>
+    );
+  }
   return (
-    <section>
-      {searchParams.view === "graph view" && <GraphView />}
-      {searchParams.view === "this week" && <WeeklyView />}
-    </section>
+    <section>{searchParams.view === "graph view" && <GraphView />}</section>
   );
 }

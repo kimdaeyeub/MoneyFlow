@@ -8,6 +8,7 @@
 "use server";
 
 import db from "../db";
+import { getWeekRange } from "../getWeekRange";
 
 export const addExpense = async ({
   title,
@@ -64,10 +65,32 @@ export const getExpensesList = async () => {
   return expenses;
 };
 
+// TODO: 로그인 및 회원가입 기능이 구현되면 사용자별 지출내역을 가져오도록 수정
 export const getTodayExpenses = async () => {
   const expenses = await db.expense.findMany({
     where: {
       date: new Date(),
+    },
+    include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+
+  return expenses;
+};
+
+export const getThisWeekExpenses = async () => {
+  const range = getWeekRange();
+  const expenses = await db.expense.findMany({
+    where: {
+      date: {
+        gte: range.startOfWeek,
+        lt: range.endOfWeek,
+      },
     },
     include: {
       category: {

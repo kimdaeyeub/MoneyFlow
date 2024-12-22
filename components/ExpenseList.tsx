@@ -15,6 +15,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Tag from "./Tag";
+import { Card } from "./ui/card";
 
 interface IProp {
   expenses: Expense[];
@@ -23,35 +24,37 @@ interface IProp {
 const ExpenseList = ({ expenses }: IProp) => {
   if (expenses.length === 0) {
     return (
-      <div className="text-center mt-14 font-medium text-gray-400">
+      <Card className="flex justify-center items-center mt-4 min-h-40 font-medium text-gray-400 w-full">
         지출 내역이 존재하지 않습니다.
-      </div>
+      </Card>
     );
   }
   return (
-    <Table className="mt-6">
-      {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px]">Category</TableHead>
-          <TableHead>Date</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {expenses.map((expense) => (
-          <TableRow key={expense.id}>
-            <TableCell className="font-medium">
-              <Tag name={expense.category.name} />
-            </TableCell>
-            <TableCell>{expense.date.toLocaleDateString("kr-ko")}</TableCell>
-            <TableCell>{expense.name}</TableCell>
-            <TableCell className="text-right">₩{expense.money}</TableCell>
+    <Card className="mt-5 w-full px-5 py-4">
+      <Table>
+        {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Category</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {expenses.map((expense) => (
+            <TableRow key={expense.id}>
+              <TableCell className="font-medium">
+                <Tag name={expense.category.name} />
+              </TableCell>
+              <TableCell>{expense.date.toLocaleDateString("kr-ko")}</TableCell>
+              <TableCell>{expense.name}</TableCell>
+              <TableCell className="text-right">₩{expense.money}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Card>
   );
 };
 
