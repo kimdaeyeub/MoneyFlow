@@ -27,7 +27,6 @@ export default async function Home({
 
   if (searchParams.view === "dashboard") {
     const expenses: Expense[] = await getExpensesList();
-
     return (
       <section>
         <DashboardView expenses={expenses} />
