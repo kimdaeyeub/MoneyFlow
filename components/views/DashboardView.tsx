@@ -2,6 +2,7 @@
 작성자: 김대엽
 파일의 역할: 홈화면에 들어갈 Dashboard
 생성 일자: 2024-12-10
+수정 일자: 2024-12-22
  */
 
 import React from "react";
@@ -9,7 +10,11 @@ import CircleProgressChart from "@/components/charts/CircleProgressChart";
 import ExpenseList from "@/components/ExpenseList";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-const DashboardView = () => {
+interface IProp {
+  expenses: Expense[];
+}
+
+const DashboardView = ({ expenses }: IProp) => {
   return (
     <>
       <Card>
@@ -20,7 +25,7 @@ const DashboardView = () => {
           <CircleProgressChart goal={80000} value={60000} text="Monthly" />
         </CardContent>
       </Card>
-      <ExpenseList />
+      <ExpenseList expenses={expenses} />
     </>
   );
 };

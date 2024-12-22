@@ -2,6 +2,7 @@
 작성자: 김대엽
 파일의 역할: 홈화면에 들어갈 지출내역 리스트
 생성 일자: 2024-12-08
+수정 일자: 2024-12-22
  */
 
 import React from "react";
@@ -15,7 +16,12 @@ import {
 } from "@/components/ui/table";
 import Tag from "./Tag";
 
-const ExpenseList = () => {
+interface IProp {
+  expenses: Expense[];
+}
+
+const ExpenseList = ({ expenses }: IProp) => {
+  console.log(expenses);
   return (
     <Table className="mt-6">
       {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
@@ -28,14 +34,14 @@ const ExpenseList = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {[0, 1, 2, 3, 4, 5].map((item) => (
-          <TableRow key={item}>
+        {expenses.map((expense) => (
+          <TableRow key={expense.id}>
             <TableCell className="font-medium">
-              <Tag />
+              <Tag name={expense.category.name} />
             </TableCell>
-            <TableCell>2024.12.08</TableCell>
-            <TableCell>마트 쇼핑</TableCell>
-            <TableCell className="text-right">₩25,000</TableCell>
+            <TableCell>{expense.date.toLocaleDateString("kr-ko")}</TableCell>
+            <TableCell>{expense.name}</TableCell>
+            <TableCell className="text-right">₩{expense.money}</TableCell>
           </TableRow>
         ))}
       </TableBody>
