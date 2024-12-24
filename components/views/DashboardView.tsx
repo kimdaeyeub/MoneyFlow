@@ -2,13 +2,13 @@
 작성자: 김대엽
 파일의 역할: 홈화면에 들어갈 Dashboard
 생성 일자: 2024-12-10
-수정 일자: 2024-12-22
+수정 일자: 2024-12-24
  */
 
 import React from "react";
 import CircleProgressChart from "@/components/charts/CircleProgressChart";
-import ExpenseList from "@/components/ExpenseList";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import ExpenseList from "../expense/ExpenseList";
 
 interface IProp {
   expenses: Expense[];

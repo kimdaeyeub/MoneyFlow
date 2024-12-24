@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 지출추가 다이얼로그에 들어갈 form
 생성 일자: 2024-12-15
-수정 일자: 2024-12-19
+수정 일자: 2024-12-24
  */
 
 "use client";
@@ -25,40 +25,24 @@ import { Popover, PopoverTrigger } from "../ui/popover";
 import { Calendar } from "../ui/calendar";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
-import { addExpense } from "@/lib/actions/expense.action";
+import { expenseFormSchema } from "@/lib/validation";
 
-const formSchema = z.object({
-  title: z.string().min(2),
-  category: z.string().min(1),
-  date: z.date({
-    required_error: "A date of birth is required.",
-  }),
-  expense: z.coerce.number().min(1),
-});
+interface IProp {
+  onSubmit: (values: z.infer<typeof expenseFormSchema>) => Promise<void>;
+  defaultValues: {
+    title: string;
+    category: string;
+    date: Date | undefined;
+    money: number;
+  };
+}
 
-export function ExpenseForm({
-  setOpen,
-}: {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+export function ExpenseForm({ onSubmit, defaultValues }: IProp) {
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      category: "",
-      date: undefined,
-      expense: 0,
-    },
+  const form = useForm<z.infer<typeof expenseFormSchema>>({
+    resolver: zodResolver(expenseFormSchema),
+    defaultValues: defaultValues,
   });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { title, category, date, expense } = values;
-    const newExpnese = await addExpense({ title, category, date, expense });
-    if (newExpnese) {
-      setOpen(false);
-    }
-  }
 
   return (
     <Form {...form}>
@@ -94,7 +78,7 @@ export function ExpenseForm({
         />
         <FormField
           control={form.control}
-          name="expense"
+          name="money"
           render={({ field }) => (
             <FormItem className="w-full">
               <FormLabel>expense</FormLabel>
@@ -147,7 +131,9 @@ export function ExpenseForm({
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <div className="w-full flex justify-end gap-5">
+          <Button type="submit">Submit</Button>
+        </div>
       </form>
     </Form>
   );

@@ -23,7 +23,7 @@ model Expense {
   name       String
   date       DateTime
   money      Int
-  category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId String
 }
 

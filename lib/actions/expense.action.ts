@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 지출 모델에 대한 CRUD 코드가 작성될 파일.
 생성 일자: 2024-12-19
-수정 일자: 2024-12-23
+수정 일자: 2024-12-24
  */
 
 "use server";
@@ -143,37 +143,36 @@ export const updateExpense = async ({
   date,
   money,
   category,
-  lastCategoryId,
+  lastCategoryName,
 }: {
   id: string;
   name: string;
   date: Date;
   money: number;
   category: string;
-  lastCategoryId: string;
+  lastCategoryName: string;
 }) => {
   const lastCategory = await db.category.findFirst({
     where: {
-      id: lastCategoryId,
+      name: lastCategoryName,
     },
     select: {
+      id: true,
       name: true,
       _count: {
-        select: {
-          expense: true,
-        },
+        select: { expense: true },
       },
     },
   });
   let newCategoryId;
   if (lastCategory?.name !== category) {
-    if (lastCategory?._count.expense === 0) {
-      await db.category.delete({
-        where: {
-          id: lastCategoryId,
-        },
-      });
-    }
+    // if (lastCategory?._count.expense === 1) {
+    //   await db.category.delete({
+    //     where: {
+    //       id: lastCategory.id,
+    //     },
+    //   });
+    // }
     newCategoryId = await db.category.findFirst({
       where: {
         name: category,
@@ -192,6 +191,8 @@ export const updateExpense = async ({
         },
       });
     }
+  } else {
+    newCategoryId = lastCategory;
   }
   const expense = await db.expense.update({
     where: {
@@ -204,6 +205,14 @@ export const updateExpense = async ({
       categoryId: newCategoryId?.id,
     },
   });
+
+  if (lastCategory?._count.expense === 1) {
+    await db.category.delete({
+      where: {
+        id: lastCategory.id,
+      },
+    });
+  }
 
   return expense;
 };
