@@ -2,11 +2,12 @@
 작성자: 김대엽
 파일의 역할: 지출 모델에 대한 CRUD 코드가 작성될 파일.
 생성 일자: 2024-12-19
-수정 일자: 2024-12-24
+수정 일자: 2024-12-25
  */
 
 "use server";
 
+import { revalidatePath } from "next/cache";
 import db from "../db";
 import { getLastThreeMonth } from "../getLastThreeMonth";
 import { getWeekRange } from "../getWeekRange";
@@ -133,7 +134,7 @@ export const deleteExpense = async (id: string) => {
       id,
     },
   });
-
+  revalidatePath("/");
   return expense;
 };
 
@@ -213,6 +214,7 @@ export const updateExpense = async ({
       },
     });
   }
+  revalidatePath("/");
 
   return expense;
 };

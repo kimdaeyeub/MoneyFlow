@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 지출추가 다이얼로그에 들어갈 form
 생성 일자: 2024-12-15
-수정 일자: 2024-12-24
+수정 일자: 2024-12-25
  */
 
 "use client";
@@ -35,9 +35,16 @@ interface IProp {
     date: Date | undefined;
     money: number;
   };
+  mode: "EDIT" | "ADD";
+  deleteAction?: () => void;
 }
 
-export function ExpenseForm({ onSubmit, defaultValues }: IProp) {
+export function ExpenseForm({
+  onSubmit,
+  defaultValues,
+  mode,
+  deleteAction,
+}: IProp) {
   // 1. Define your form.
   const form = useForm<z.infer<typeof expenseFormSchema>>({
     resolver: zodResolver(expenseFormSchema),
@@ -132,7 +139,16 @@ export function ExpenseForm({ onSubmit, defaultValues }: IProp) {
           )}
         />
         <div className="w-full flex justify-end gap-5">
-          <Button type="submit">Submit</Button>
+          {mode === "EDIT" && (
+            <Button
+              onClick={deleteAction}
+              type="button"
+              className="bg-red-500 px-7 hover:bg-red-600"
+            >
+              Delete
+            </Button>
+          )}
+          <Button type="submit">{mode === "ADD" ? "Submit" : "Update"}</Button>
         </div>
       </form>
     </Form>

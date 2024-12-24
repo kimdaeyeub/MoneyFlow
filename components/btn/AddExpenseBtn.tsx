@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 다이얼로그를 여는 버튼으로 폼이 정상 제출시 해당 다이얼로그를 닫기위해 상태가 필요해져 별도의 클라이언트 사이드 컴포넌트로 분리
 생성 일자: 2024-12-19
-수정 일자: 2024-12-24
+수정 일자: 2024-12-25
  */
 
 "use client";
@@ -47,6 +47,7 @@ const AddExpenseBtn = () => {
         <ExpenseForm
           onSubmit={onSubmit}
           defaultValues={{ title: "", category: "", date: undefined, money: 0 }}
+          mode="ADD"
         />
       </DialogContent>
     </Dialog>

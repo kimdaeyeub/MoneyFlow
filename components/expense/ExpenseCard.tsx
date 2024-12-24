@@ -2,6 +2,7 @@
 작성자: 김대엽
 파일의 역할: 지출 목록에 들어갈 각 지출 카드 컴포넌트
 생성 일자: 2024-12-24
+수정 일자: 2024-12-25
  */
 
 "use client";
@@ -18,7 +19,7 @@ import {
 import { ExpenseForm } from "../forms/ExpenseForm";
 import { expenseFormSchema } from "@/lib/validation";
 import { z } from "zod";
-import { updateExpense } from "@/lib/actions/expense.action";
+import { deleteExpense, updateExpense } from "@/lib/actions/expense.action";
 
 interface IProp {
   expense: Expense;
@@ -41,6 +42,11 @@ const ExpenseCard = ({ expense }: IProp) => {
       setOpen(false);
     }
   }
+
+  const deleteAction = async () => {
+    await deleteExpense(expense.id);
+    setOpen(false);
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -66,6 +72,7 @@ const ExpenseCard = ({ expense }: IProp) => {
         </DialogHeader>
         <div className="flex flex-col items-start">
           <ExpenseForm
+            mode="EDIT"
             onSubmit={onSubmit}
             defaultValues={{
               money: expense.money,
@@ -73,6 +80,7 @@ const ExpenseCard = ({ expense }: IProp) => {
               category: expense.category.name,
               date: expense.date,
             }}
+            deleteAction={deleteAction}
           />
         </div>
       </DialogContent>
