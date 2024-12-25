@@ -28,9 +28,9 @@ model Expense {
 }
 
 model Category {
-  id      String    @id @default(uuid())
-  name    String
-  expense Expense[]
+  id       String    @id @default(uuid())
+  name     String
+  expenses Expense[]
 }
 
 model Goal {

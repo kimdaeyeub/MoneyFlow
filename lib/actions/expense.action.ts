@@ -161,7 +161,7 @@ export const updateExpense = async ({
       id: true,
       name: true,
       _count: {
-        select: { expense: true },
+        select: { expenses: true },
       },
     },
   });
@@ -207,7 +207,7 @@ export const updateExpense = async ({
     },
   });
 
-  if (lastCategory?._count.expense === 1) {
+  if (lastCategory?._count.expenses === 1) {
     await db.category.delete({
       where: {
         id: lastCategory.id,

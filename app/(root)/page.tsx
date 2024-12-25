@@ -2,13 +2,14 @@
 작성자: 김대엽
 파일의 역할: 웹사이트 홈페이지
 생성 일자: 2024-12-06
-수정 일자: 2024-12-22
+수정 일자: 2024-12-25
  */
 
 import DashboardView from "@/components/views/DashboardView";
 import GraphView from "@/components/views/GraphView";
 import TodayView from "@/components/views/TodayView";
 import WeeklyView from "@/components/views/WeeklyView";
+
 import {
   getExpensesList,
   getThisWeekExpenses,
@@ -21,11 +22,12 @@ export default async function Home({
 }: {
   searchParams: { view: string };
 }) {
-  if (!searchParams.view) {
+  const { view } = await searchParams;
+  if (!view) {
     redirect("/?view=dashboard");
   }
 
-  if (searchParams.view === "dashboard") {
+  if (view === "dashboard") {
     const expenses: Expense[] = await getExpensesList();
     return (
       <section>
@@ -34,7 +36,7 @@ export default async function Home({
     );
   }
 
-  if (searchParams.view === "today") {
+  if (view === "today") {
     const expenses: Expense[] = await getTodayExpenses();
 
     return (
@@ -43,7 +45,7 @@ export default async function Home({
       </section>
     );
   }
-  if (searchParams.view === "this week") {
+  if (view === "this week") {
     const expenses: Expense[] = await getThisWeekExpenses();
 
     return (
@@ -52,7 +54,5 @@ export default async function Home({
       </section>
     );
   }
-  return (
-    <section>{searchParams.view === "graph view" && <GraphView />}</section>
-  );
+  return <section>{view === "graph view" && <GraphView />}</section>;
 }

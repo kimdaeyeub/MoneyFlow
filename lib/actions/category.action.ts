@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 카테고리 모델에 대한 CRUD 코드가 작성될 파일.
 생성 일자: 2024-12-23
-수정 일자: 2024-12-24
+수정 일자: 2024-12-25
  */
 
 "use server";
@@ -28,4 +28,11 @@ export const updateCategory = async ({
 export const deleteCategory = async ({ id }: { id: string }) => {
   const deletedCategory = await db.category.delete({ where: { id } });
   return deletedCategory;
+};
+
+export const getCategoriesList = async () => {
+  const categories = await db.category.findMany({
+    include: { expenses: true },
+  });
+  return categories;
 };
