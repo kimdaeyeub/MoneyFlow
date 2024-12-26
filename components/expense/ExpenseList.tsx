@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 홈화면에 들어갈 지출내역 리스트
 생성 일자: 2024-12-08
-수정 일자: 2024-12-24
+수정 일자: 2024-12-26
  */
 
 import React from "react";
@@ -14,8 +14,17 @@ interface IProp {
 }
 
 const ExpenseList = ({ expenses }: IProp) => {
+  if (expenses.length === 0) {
+    return (
+      <Card className="min-h-40 mt-5 p-5 w-full flex items-center justify-center">
+        <span className="font-medium text-gray-400 text-sm">
+          해당 날짜의 지출내역이 존재하지 않습니다.
+        </span>
+      </Card>
+    );
+  }
   return (
-    <Card className="min-h-60 mt-5 p-5 w-full">
+    <Card className="min-h-40 mt-5 p-5 w-full flex items-center">
       <div className="w-full h-full flex flex-col divide-y">
         {/* Header */}
         <div className="w-full grid grid-cols-4 gap-1 border-b">
