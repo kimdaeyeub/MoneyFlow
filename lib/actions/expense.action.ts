@@ -70,9 +70,24 @@ export const getExpensesList = async () => {
 
 // TODO: 로그인 및 회원가입 기능이 구현되면 사용자별 지출내역을 가져오도록 수정
 export const getTodayExpenses = async () => {
+  const today = new Date();
+  const startOfDay = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+  const endOfDay = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 1
+  );
+
   const expenses = await db.expense.findMany({
     where: {
-      date: new Date(),
+      date: {
+        gte: startOfDay,
+        lt: endOfDay,
+      },
     },
     include: {
       category: {
@@ -217,4 +232,29 @@ export const updateExpense = async ({
   revalidatePath("/");
 
   return expense;
+};
+
+export const getThisMonthExpenses = async () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const lastDay = new Date(year, month + 1, 0).getDate();
+  const first = new Date(`${year}-${month}-01`);
+  const last = new Date(`${year}-${month}-${lastDay}`);
+  const expenses = await db.expense.findMany({
+    where: {
+      date: {
+        gte: first,
+        lt: last,
+      },
+    },
+    include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
+  return expenses;
 };

@@ -12,6 +12,7 @@ import WeeklyView from "@/components/views/WeeklyView";
 
 import {
   getExpensesList,
+  getThisMonthExpenses,
   getThisWeekExpenses,
   getTodayExpenses,
 } from "@/lib/actions/expense.action";
@@ -30,10 +31,33 @@ export default async function Home({
 
   if (view === "dashboard") {
     const expenses: Expense[] = await getExpensesList();
+    const today: Expense[] = await getTodayExpenses();
+    const week: Expense[] = await getThisWeekExpenses();
+    const month: Expense[] = await getThisMonthExpenses();
     const goal = await getGoal();
+    console.log(week, "today", new Date());
+    const calcExpenses = (expenses: Expense[] | []) => {
+      if (expenses.length === 0) return 0;
+      const money = expenses.map((expense) => expense.money);
+      return money.reduce((a, b) => a + b);
+    };
+    // const money = today.map((expense) => expense.money);
+    // console.log(
+    //   // money.reduce((a, b) => a + b),
+    //   money,
+    //   "today total"
+    // );
     return (
       <section>
-        <DashboardView expenses={expenses} goal={goal} />
+        <DashboardView
+          expenses={expenses}
+          goal={goal}
+          circularProgressbar={{
+            week: calcExpenses(week),
+            today: calcExpenses(today),
+            month: calcExpenses(month),
+          }}
+        />
       </section>
     );
   }

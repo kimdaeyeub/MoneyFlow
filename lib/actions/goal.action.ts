@@ -33,3 +33,28 @@ export const createGoal = async ({
   revalidatePath("/");
   return newGoal;
 };
+
+export const updateGoal = async ({
+  day,
+  week,
+  month,
+  id,
+}: {
+  day: number;
+  week: number;
+  month: number;
+  id: string;
+}) => {
+  const updatedGoal = await db.goal.update({
+    where: {
+      id,
+    },
+    data: {
+      day,
+      week,
+      month,
+    },
+  });
+  revalidatePath("/");
+  return updatedGoal;
+};

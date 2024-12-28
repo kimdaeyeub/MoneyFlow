@@ -16,13 +16,14 @@ import {
 import { z } from "zod";
 import { goalFormSchema } from "@/lib/validation";
 import GoalForm from "../forms/GoalForm";
-import { createGoal } from "@/lib/actions/goal.action";
+import { createGoal, updateGoal } from "@/lib/actions/goal.action";
 
 interface IProp {
   mode: "Add" | "Edit";
+  goal?: Goal;
 }
 
-const GoalBtn = ({ mode }: IProp) => {
+const GoalBtn = ({ mode, goal }: IProp) => {
   const [open, setOpen] = useState(false);
 
   const addGoal = async (values: z.infer<typeof goalFormSchema>) => {
@@ -32,8 +33,16 @@ const GoalBtn = ({ mode }: IProp) => {
     }
   };
 
-  const updateGoal = async (values: z.infer<typeof goalFormSchema>) => {
-    console.log(values);
+  const editGoal = async (values: z.infer<typeof goalFormSchema>) => {
+    const updatedGoal = await updateGoal({
+      id: goal!.id,
+      day: values.day,
+      week: values.week,
+      month: values.month,
+    });
+    if (updatedGoal) {
+      setOpen(false);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -47,8 +56,12 @@ const GoalBtn = ({ mode }: IProp) => {
           <DialogTitle>Add and Update Goal</DialogTitle>
         </DialogHeader>
         <GoalForm
-          onSubmit={mode === "Add" ? addGoal : updateGoal}
-          defaultValues={{ day: 0, week: 0, month: 0 }}
+          onSubmit={mode === "Add" ? addGoal : editGoal}
+          defaultValues={
+            mode === "Add"
+              ? { day: 0, week: 0, month: 0 }
+              : { day: goal!.day, week: goal!.week, month: goal!.month }
+          }
         />
       </DialogContent>
     </Dialog>

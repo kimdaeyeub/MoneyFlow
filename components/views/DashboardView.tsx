@@ -14,9 +14,15 @@ import GoalBtn from "../btn/GoalBtn";
 interface IProp {
   expenses: Expense[];
   goal: Goal | null;
+  circularProgressbar: {
+    today: number;
+    week: number;
+    month: number;
+  };
 }
 
-const DashboardView = ({ expenses, goal }: IProp) => {
+const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
+  console.log(circularProgressbar);
   return (
     <>
       <Card>
@@ -37,13 +43,25 @@ const DashboardView = ({ expenses, goal }: IProp) => {
             <CardHeader>
               <div className="w-full flex justify-between items-center">
                 <span className="text-2xl font-bold">초과 금지 카드</span>
-                <GoalBtn mode="Add" />
+                <GoalBtn mode={goal !== null ? "Edit" : "Add"} goal={goal} />
               </div>
             </CardHeader>
             <CardContent className="flex h-[250px]">
-              <CircleProgressChart goal={10000} value={7000} text="Daily" />
-              <CircleProgressChart goal={20000} value={10000} text="Weekly" />
-              <CircleProgressChart goal={80000} value={60000} text="Monthly" />
+              <CircleProgressChart
+                goal={goal.day}
+                value={circularProgressbar.today}
+                text="Daily"
+              />
+              <CircleProgressChart
+                goal={goal.week}
+                value={circularProgressbar.week}
+                text="Weekly"
+              />
+              <CircleProgressChart
+                goal={goal.month}
+                value={circularProgressbar.month}
+                text="Monthly"
+              />
             </CardContent>
           </>
         )}
