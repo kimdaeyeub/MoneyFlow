@@ -35,18 +35,12 @@ export default async function Home({
     const week: Expense[] = await getThisWeekExpenses();
     const month: Expense[] = await getThisMonthExpenses();
     const goal = await getGoal();
-    console.log(week, "today", new Date());
     const calcExpenses = (expenses: Expense[] | []) => {
       if (expenses.length === 0) return 0;
       const money = expenses.map((expense) => expense.money);
       return money.reduce((a, b) => a + b);
     };
-    // const money = today.map((expense) => expense.money);
-    // console.log(
-    //   // money.reduce((a, b) => a + b),
-    //   money,
-    //   "today total"
-    // );
+
     return (
       <section>
         <DashboardView

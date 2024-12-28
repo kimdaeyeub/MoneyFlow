@@ -13,7 +13,6 @@ import React from "react";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const categories: Category[] = await getCategoriesList();
-  console.log(categories);
   return (
     <main className="relative w-full">
       <Navbar />

@@ -50,6 +50,7 @@ export const addExpense = async ({
       categoryId: categoryId.id,
     },
   });
+  revalidatePath("/");
   return newExpense;
 };
 
@@ -148,7 +149,31 @@ export const deleteExpense = async (id: string) => {
     where: {
       id,
     },
+    select: {
+      categoryId: true,
+    },
   });
+  const category = await db.category.findUnique({
+    where: {
+      id: expense.categoryId,
+    },
+    select: {
+      _count: {
+        select: {
+          expenses: true,
+        },
+      },
+    },
+  });
+
+  if (category !== null && category._count.expenses === 0) {
+    await db.category.delete({
+      where: {
+        id: expense.categoryId,
+      },
+    });
+  }
+
   revalidatePath("/");
   return expense;
 };

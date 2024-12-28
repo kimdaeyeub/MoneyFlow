@@ -22,7 +22,6 @@ interface IProp {
 }
 
 const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
-  console.log(circularProgressbar);
   return (
     <>
       <Card>
