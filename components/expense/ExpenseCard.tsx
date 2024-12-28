@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 지출 목록에 들어갈 각 지출 카드 컴포넌트
 생성 일자: 2024-12-24
-수정 일자: 2024-12-25
+수정 일자: 2024-12-28
  */
 
 "use client";
@@ -51,7 +51,7 @@ const ExpenseCard = ({ expense }: IProp) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <div className="w-full grid grid-cols-4 gap-1 text-sm text-gray-600 font-medium hover:bg-slate-50 bg-white transition-colors duration-300">
+        <div className="w-full grid grid-cols-4 gap-1 text-sm text-gray-600 font-medium hover:bg-slate-50 bg-white dark:bg-transparent dark:text-gray-400 transition-colors duration-300">
           <div className="w-full py-3 flex justify-center items-center">
             <Tag name={expense.category.name} />
           </div>

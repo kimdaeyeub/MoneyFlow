@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 전역으로 사용할 타입 정의
 생성 일자: 2024-12-22
-수정 일자: 2024-12-25
+수정 일자: 2024-12-28
  */
 
 interface Expense {
@@ -26,4 +26,11 @@ interface Category {
     money: number;
     categoryId: string;
   }[];
+}
+
+interface Goal {
+  id: string;
+  day: number;
+  week: number;
+  month: number;
 }

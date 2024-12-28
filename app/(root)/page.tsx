@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 웹사이트 홈페이지
 생성 일자: 2024-12-06
-수정 일자: 2024-12-25
+수정 일자: 2024-12-28
  */
 
 import DashboardView from "@/components/views/DashboardView";
@@ -15,6 +15,7 @@ import {
   getThisWeekExpenses,
   getTodayExpenses,
 } from "@/lib/actions/expense.action";
+import { getGoal } from "@/lib/actions/goal.action";
 import { redirect } from "next/navigation";
 
 export default async function Home({
@@ -29,9 +30,10 @@ export default async function Home({
 
   if (view === "dashboard") {
     const expenses: Expense[] = await getExpensesList();
+    const goal = await getGoal();
     return (
       <section>
-        <DashboardView expenses={expenses} />
+        <DashboardView expenses={expenses} goal={goal} />
       </section>
     );
   }
