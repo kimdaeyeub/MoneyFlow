@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 지출 모델에 대한 CRUD 코드가 작성될 파일.
 생성 일자: 2024-12-19
-수정 일자: 2024-12-25
+수정 일자: 2024-12-29
  */
 
 "use server";
@@ -131,6 +131,9 @@ export const getExpensesForGraph = async () => {
         gte: range.threeMonthAgo,
         lt: range.today,
       },
+    },
+    orderBy: {
+      date: "asc",
     },
     include: {
       category: {

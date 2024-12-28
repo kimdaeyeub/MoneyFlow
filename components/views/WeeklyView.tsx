@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 일주일동안의 지출 내역을 보여줄 컴포넌트이다.
 생성 일자: 2024-12-11
-수정 일자: 2024-12-24
+수정 일자: 2024-12-29
  */
 
 import React from "react";
@@ -40,13 +40,13 @@ const WeeklyView = ({ expenses }: IProp) => {
     const data: {
       [key: string]: Expense[];
     } = {
-      일요일: [],
       월요일: [],
       화요일: [],
       수요일: [],
       목요일: [],
       금요일: [],
       토요일: [],
+      일요일: [],
     };
     expenses.forEach((expense) => {
       const day = expense.date.getDay();

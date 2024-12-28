@@ -2,7 +2,7 @@
 작성자: 김대엽
 파일의 역할: 웹사이트 홈페이지
 생성 일자: 2024-12-06
-수정 일자: 2024-12-28
+수정 일자: 2024-12-29
  */
 
 import DashboardView from "@/components/views/DashboardView";
@@ -11,6 +11,7 @@ import TodayView from "@/components/views/TodayView";
 import WeeklyView from "@/components/views/WeeklyView";
 
 import {
+  getExpensesForGraph,
   getExpensesList,
   getThisMonthExpenses,
   getThisWeekExpenses,
@@ -74,5 +75,19 @@ export default async function Home({
       </section>
     );
   }
-  return <section>{view === "graph view" && <GraphView />}</section>;
+
+  if (view === "graph view") {
+    const expenses: Expense[] = await getExpensesForGraph();
+    const formatData = (expenses: Expense[]) => {
+      return expenses.map((expense) => ({
+        date: expense.date.toISOString().split("T")[0],
+        money: expense.money,
+      }));
+    };
+    return (
+      <section>
+        <GraphView data={formatData(expenses)} />
+      </section>
+    );
+  }
 }
