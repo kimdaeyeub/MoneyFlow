@@ -10,6 +10,7 @@ import {
   PASSWORD_REGEX_ERROR,
 } from "../constants";
 import { z } from "zod";
+import { revalidatePath } from "next/cache";
 
 const checkPassword = ({
   password,
@@ -96,41 +97,9 @@ export const createAccount = async (prevState: unknown, formData: FormData) => {
 export const logOut = async () => {
   const session = await getSession();
   session.destroy();
+  revalidatePath("/");
   redirect("/");
 };
-
-// export const login = async ({
-//   email,
-//   password,
-// }: {
-//   email: string;
-//   password: string;
-// }) => {
-//   const user = await db.user.findUnique({
-//     where: {
-//       email: email,
-//     },
-//     select: {
-//       password: true,
-//       id: true,
-//     },
-//   });
-//   const ok = await bcrypt.compare(password, user!.password ?? "");
-//   // log the user in
-//   if (ok) {
-//     const session = await getSession();
-//     session.id = user!.id;
-//     await session.save();
-//     redirect("/profile");
-//   } else {
-//     return {
-//       fieldErrors: {
-//         password: ["잘못된 비밀번호입니다."],
-//         email: [],
-//       },
-//     };
-//   }
-// };
 
 const checkEmailExists = async (email: string) => {
   const user = await db.user.findUnique({
@@ -164,7 +133,6 @@ export const login = async (prevState: unknown, formData: FormData) => {
   if (!result.success) {
     return result.error.flatten();
   } else {
-    // if the user is found, check password hash
     const user = await db.user.findUnique({
       where: {
         email: result.data.email,
@@ -175,7 +143,7 @@ export const login = async (prevState: unknown, formData: FormData) => {
       },
     });
     const ok = await bcrypt.compare(result.data.password, user!.password ?? "");
-    // log the user in
+
     if (ok) {
       const session = await getSession();
       session.id = user!.id;
@@ -189,6 +157,5 @@ export const login = async (prevState: unknown, formData: FormData) => {
         },
       };
     }
-    // redirect "/profile"
   }
 };

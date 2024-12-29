@@ -3,6 +3,7 @@
 import AuthInput from "@/components/forms/AuthInput";
 import { login } from "@/lib/actions/user.action";
 import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
+import Link from "next/link";
 import React, { useActionState, useState } from "react";
 
 const LoginPage = () => {
@@ -33,9 +34,20 @@ const LoginPage = () => {
           minLength={PASSWORD_MIN_LENGTH}
         />
       </div>
-      <button className="btn-bg font-semibold text-white rounded-md py-3">
-        Create Account
-      </button>
+      <div className="w-full flex gap-4 flex-col justify-center items-center">
+        <button className="w-full btn-bg font-semibold text-white rounded-md py-3">
+          Login
+        </button>
+        <div className="flex justify-center gap-2 font-medium text-sm items-center">
+          <p>계정이 존재하지 않으신가요?</p>
+          <Link
+            href="/create-account"
+            className="text-orange-300 font-medium hover:underline underline-offset-2"
+          >
+            회원가입
+          </Link>
+        </div>
+      </div>
     </form>
   );
 };

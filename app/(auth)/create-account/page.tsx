@@ -3,6 +3,7 @@
 import AuthInput from "@/components/forms/AuthInput";
 import { createAccount } from "@/lib/actions/user.action";
 import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
+import Link from "next/link";
 import React, { useActionState, useState } from "react";
 
 const CreateAccountPage = () => {
@@ -68,9 +69,20 @@ const CreateAccountPage = () => {
           errors={state?.fieldErrors.confirm_password}
         />
       </div>
-      <button className="btn-bg font-semibold text-white rounded-md py-3">
-        Create Account
-      </button>
+      <div className="w-full flex gap-4 flex-col justify-center items-center">
+        <button className="w-full btn-bg font-semibold text-white rounded-md py-3">
+          회원가입
+        </button>
+        <div className="flex justify-center gap-2 font-medium text-sm items-center">
+          <p>이미 계정이 존재하시나요?</p>
+          <Link
+            href="/sign-in"
+            className="text-orange-300 font-medium hover:underline underline-offset-2"
+          >
+            로그인
+          </Link>
+        </div>
+      </div>
     </form>
   );
 };

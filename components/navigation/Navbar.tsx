@@ -7,8 +7,10 @@
 
 import React from "react";
 import { Theme } from "../Theme";
+import Link from "next/link";
+import LogoutBtn from "../btn/LogoutBtn";
 
-const Navbar = () => {
+const Navbar = ({ userId }: { userId?: string }) => {
   return (
     <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-black flex justify-between items-center">
       <p className="text-2xl font-bold">
@@ -21,7 +23,16 @@ const Navbar = () => {
       />
       <div className="flex gap-4 items-center">
         <Theme />
-        <div className="rounded-full size-12 bg-gray-100" />
+        {userId ? (
+          <div className="relative">
+            <div className="rounded-full size-12 bg-gray-100" />
+            <div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-md border">
+              <LogoutBtn />
+            </div>
+          </div>
+        ) : (
+          <Link href="/sign-in">Login</Link>
+        )}
       </div>
     </nav>
   );
