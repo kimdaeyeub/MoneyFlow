@@ -51,7 +51,7 @@ const CreateAccountPage = () => {
           value={password}
           setState={setPassword}
           name="password"
-          type="text"
+          type="password"
           placeholder="Password"
           required
           errors={state?.fieldErrors.password}
@@ -61,7 +61,7 @@ const CreateAccountPage = () => {
           value={confirmPassword}
           setState={setConfirmPassword}
           name="confirm_password"
-          type="text"
+          type="password"
           placeholder="Confirm Password"
           required
           minLength={PASSWORD_MIN_LENGTH}

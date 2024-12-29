@@ -99,35 +99,96 @@ export const logOut = async () => {
   redirect("/");
 };
 
-export const login = async ({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}) => {
+// export const login = async ({
+//   email,
+//   password,
+// }: {
+//   email: string;
+//   password: string;
+// }) => {
+//   const user = await db.user.findUnique({
+//     where: {
+//       email: email,
+//     },
+//     select: {
+//       password: true,
+//       id: true,
+//     },
+//   });
+//   const ok = await bcrypt.compare(password, user!.password ?? "");
+//   // log the user in
+//   if (ok) {
+//     const session = await getSession();
+//     session.id = user!.id;
+//     await session.save();
+//     redirect("/profile");
+//   } else {
+//     return {
+//       fieldErrors: {
+//         password: ["잘못된 비밀번호입니다."],
+//         email: [],
+//       },
+//     };
+//   }
+// };
+
+const checkEmailExists = async (email: string) => {
   const user = await db.user.findUnique({
     where: {
-      email: email,
+      email,
     },
     select: {
-      password: true,
       id: true,
     },
   });
-  const ok = await bcrypt.compare(password, user!.password ?? "");
-  // log the user in
-  if (ok) {
-    const session = await getSession();
-    session.id = user!.id;
-    await session.save();
-    redirect("/profile");
+  return Boolean(user);
+};
+const formSchema = z.object({
+  email: z
+    .string()
+    .email()
+    .toLowerCase()
+    .refine(checkEmailExists, "이 이메일을 사용하는 계정이 존재하지 않습니다."),
+  password: z
+    .string({ required_error: "비밀번호는 필수 입력 항목입니다." })
+    .min(PASSWORD_MIN_LENGTH)
+    .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
+});
+
+export const login = async (prevState: unknown, formData: FormData) => {
+  const data = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+  const result = await formSchema.spa(data);
+  if (!result.success) {
+    return result.error.flatten();
   } else {
-    return {
-      fieldErrors: {
-        password: ["잘못된 비밀번호입니다."],
-        email: [],
+    // if the user is found, check password hash
+    const user = await db.user.findUnique({
+      where: {
+        email: result.data.email,
       },
-    };
+      select: {
+        password: true,
+        id: true,
+      },
+    });
+    const ok = await bcrypt.compare(result.data.password, user!.password ?? "");
+    // log the user in
+    if (ok) {
+      const session = await getSession();
+      session.id = user!.id;
+      await session.save();
+      redirect("/");
+    } else {
+      return {
+        fieldErrors: {
+          password: ["잘못된 비밀번호입니다."],
+          email: [],
+        },
+      };
+    }
+    // redirect "/profile"
   }
 };
