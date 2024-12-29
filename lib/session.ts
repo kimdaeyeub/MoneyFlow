@@ -8,7 +8,7 @@ import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 
 interface SessionContent {
-  id?: number;
+  id?: string;
 }
 
 export default async function getSession() {
