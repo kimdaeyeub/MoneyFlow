@@ -8,9 +8,15 @@
 
 import { revalidatePath } from "next/cache";
 import db from "../db";
+import getSession from "../session";
 
 export const getGoal = async () => {
-  const goals = await db.goal.findFirst({});
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
+  const goals = await db.goal.findFirst({
+    where: { userId },
+  });
   return goals;
 };
 
@@ -23,8 +29,12 @@ export const createGoal = async ({
   week: number;
   month: number;
 }) => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const newGoal = await db.goal.create({
     data: {
+      userId,
       day,
       week,
       month,
@@ -45,6 +55,10 @@ export const updateGoal = async ({
   month: number;
   id: string;
 }) => {
+  const session = await getSession();
+  const userId = session.id;
+
+  if (!userId) return null;
   const updatedGoal = await db.goal.update({
     where: {
       id,

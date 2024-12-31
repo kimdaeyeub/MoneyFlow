@@ -9,7 +9,7 @@ import React from "react";
 import ExpenseList from "../expense/ExpenseList";
 
 interface IProp {
-  expenses: Expense[];
+  expenses: Expense[] | null;
 }
 
 const TodayView = ({ expenses }: IProp) => {

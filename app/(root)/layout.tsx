@@ -13,7 +13,7 @@ import getSession from "@/lib/session";
 import React from "react";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  const categories: Category[] = await getCategoriesList();
+  const categories: Category[] | null = await getCategoriesList();
   const session = await getSession();
 
   return (

@@ -9,14 +9,18 @@ import React from "react";
 
 interface IProp {
   name: string;
+  color: string;
 }
 
-const Tag = ({ name }: IProp) => {
+const Category = ({ name, color }: IProp) => {
   return (
-    <div className="px-4 py-1 text-center rounded-full text-white text-sm bg-[#ff6f00da]">
+    <div
+      style={{ backgroundColor: color }}
+      className="px-4 py-1 text-center rounded-full text-white text-sm"
+    >
       {name}
     </div>
   );
 };
 
-export default Tag;
+export default Category;

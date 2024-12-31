@@ -4,7 +4,7 @@
 생성 일자: 2024-12-07
 수정 일자: 2024-12-28
  */
-
+import DeleteCategoryBtn from "@/components/btn/DeleteCategoryBtn";
 import ExpenseList from "@/components/expense/ExpenseList";
 import { getCategoryById } from "@/lib/actions/category.action";
 import React from "react";
@@ -14,7 +14,13 @@ const CategoryDetail = async ({ params }: { params: { id: string } }) => {
   const category = await getCategoryById({ id });
   return (
     <>
-      <h1 className="font-bold text-2xl ml-3">{category?.name}</h1>
+      <div className="w-full flex justify-between items-center">
+        <h1 className="font-bold text-2xl ml-3">{category?.name}</h1>
+        <div className="flex justify-center items-center gap-2 font-medium text-sm">
+          <button>Edit</button>
+          <DeleteCategoryBtn categoryId={id} />
+        </div>
+      </div>
 
       <ExpenseList expenses={category?.expenses ?? []} />
     </>

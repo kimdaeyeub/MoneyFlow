@@ -8,8 +8,8 @@
 "use server";
 
 import db from "../db";
+import getSession from "../session";
 
-// TODO: 카테고리에 관한 모든 액션의 필터에는 사용자 정보도 포함되어야 함.
 export const updateCategory = async ({
   id,
   name,
@@ -17,6 +17,9 @@ export const updateCategory = async ({
   id: string;
   name: string;
 }) => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const updatedCategory = await db.category.update({
     where: { id },
     data: { name },
@@ -24,14 +27,18 @@ export const updateCategory = async ({
   return updatedCategory;
 };
 
-// TODO: 카테고리를 삭제할 경우 해당 카테고리에 속한 지출내역도 삭제되므로 확인 메세지 렌더링 필요
 export const deleteCategory = async ({ id }: { id: string }) => {
   const deletedCategory = await db.category.delete({ where: { id } });
   return deletedCategory;
 };
 
 export const getCategoriesList = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
+
   const categories = await db.category.findMany({
+    where: { userId },
     include: { expenses: true },
   });
   return categories;
@@ -47,6 +54,7 @@ export const getCategoryById = async ({ id }: { id: string }) => {
           category: {
             select: {
               name: true,
+              color: true,
             },
           },
         },

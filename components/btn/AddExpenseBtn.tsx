@@ -21,7 +21,6 @@ import { expenseFormSchema } from "@/lib/validation";
 
 const AddExpenseBtn = () => {
   const [open, setOpen] = useState(false);
-
   async function onSubmit(values: z.infer<typeof expenseFormSchema>) {
     const { title, category, date, money } = values;
     const newExpnese = await addExpense({

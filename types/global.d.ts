@@ -13,12 +13,14 @@ interface Expense {
   categoryId: string;
   category: {
     name: string;
+    color: string;
   };
 }
 
 interface Category {
   id: string;
   name: string;
+  color: string;
   expenses: {
     id: string;
     name: string;

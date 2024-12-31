@@ -9,7 +9,7 @@ import React from "react";
 import ExpenseList from "../expense/ExpenseList";
 
 interface IProp {
-  expenses: Expense[];
+  expenses: Expense[] | null;
 }
 
 const WeeklyView = ({ expenses }: IProp) => {
@@ -35,7 +35,7 @@ const WeeklyView = ({ expenses }: IProp) => {
     }
   };
 
-  const sortDay = (expenses: Expense[]) => {
+  const sortDay = (expenses: Expense[] | null) => {
     // 일주일동안의 지출 내역을 요일별로 정렬
     const data: {
       [key: string]: Expense[];
@@ -48,6 +48,7 @@ const WeeklyView = ({ expenses }: IProp) => {
       토요일: [],
       일요일: [],
     };
+    if (!expenses) return data;
     expenses.forEach((expense) => {
       const day = expense.date.getDay();
       const dayOfWeek = getDayOfWeek(day);

@@ -31,13 +31,14 @@ export default async function Home({
   }
 
   if (view === "dashboard") {
-    const expenses: Expense[] = await getExpensesList();
-    const today: Expense[] = await getTodayExpenses();
-    const week: Expense[] = await getThisWeekExpenses();
-    const month: Expense[] = await getThisMonthExpenses();
+    const expenses: Expense[] | null = await getExpensesList();
+    const today: Expense[] | null = await getTodayExpenses();
+    const week: Expense[] | null = await getThisWeekExpenses();
+    const month: Expense[] | null = await getThisMonthExpenses();
     const goal = await getGoal();
-    const calcExpenses = (expenses: Expense[] | []) => {
-      if (expenses.length === 0) return 0;
+
+    const calcExpenses = (expenses: Expense[] | null) => {
+      if (!expenses) return 0;
       const money = expenses.map((expense) => expense.money);
       return money.reduce((a, b) => a + b);
     };
@@ -58,7 +59,7 @@ export default async function Home({
   }
 
   if (view === "today") {
-    const expenses: Expense[] = await getTodayExpenses();
+    const expenses: Expense[] | null = await getTodayExpenses();
 
     return (
       <section>
@@ -67,7 +68,7 @@ export default async function Home({
     );
   }
   if (view === "this week") {
-    const expenses: Expense[] = await getThisWeekExpenses();
+    const expenses: Expense[] | null = await getThisWeekExpenses();
 
     return (
       <section>
@@ -77,7 +78,7 @@ export default async function Home({
   }
 
   if (view === "graph view") {
-    const expenses: Expense[] = await getExpensesForGraph();
+    const expenses: Expense[] | null = await getExpensesForGraph();
     const formatData = (expenses: Expense[]) => {
       return expenses.map((expense) => ({
         date: expense.date.toISOString().split("T")[0],
@@ -85,9 +86,7 @@ export default async function Home({
       }));
     };
     return (
-      <section>
-        <GraphView data={formatData(expenses)} />
-      </section>
+      <section>{expenses && <GraphView data={formatData(expenses)} />}</section>
     );
   }
 }

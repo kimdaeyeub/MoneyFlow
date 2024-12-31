@@ -11,6 +11,8 @@ import { revalidatePath } from "next/cache";
 import db from "../db";
 import { getLastThreeMonth } from "../getLastThreeMonth";
 import { getWeekRange } from "../getWeekRange";
+import getSession from "../session";
+import { defaultCategoryColor } from "../constants";
 
 export const addExpense = async ({
   title,
@@ -23,10 +25,13 @@ export const addExpense = async ({
   date: Date;
   expense: number;
 }) => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   let categoryId = await db.category.findFirst({
     where: {
       name: category,
-      // TODO: 로그인 및 회원가입 기능이 구현되면 사용자별 카테고리를 가져오도록 수정
+      userId,
     },
     select: {
       id: true,
@@ -36,6 +41,8 @@ export const addExpense = async ({
     categoryId = await db.category.create({
       data: {
         name: category,
+        userId,
+        color: defaultCategoryColor,
       },
       select: {
         id: true,
@@ -44,6 +51,7 @@ export const addExpense = async ({
   }
   const newExpense = await db.expense.create({
     data: {
+      userId,
       name: title,
       date,
       money: expense,
@@ -54,22 +62,26 @@ export const addExpense = async ({
   return newExpense;
 };
 
-// TODO: 로그인 및 회원가입 기능이 구현되면 사용자별 지출내역을 가져오도록 수정
 export const getExpensesList = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const expenses = await db.expense.findMany({
+    where: {
+      userId,
+    },
     include: {
       category: {
         select: {
           name: true,
+          color: true,
         },
       },
     },
   });
-
   return expenses;
 };
 
-// TODO: 로그인 및 회원가입 기능이 구현되면 사용자별 지출내역을 가져오도록 수정
 export const getTodayExpenses = async () => {
   const today = new Date();
   const startOfDay = new Date(
@@ -83,8 +95,12 @@ export const getTodayExpenses = async () => {
     today.getDate() + 1
   );
 
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const expenses = await db.expense.findMany({
     where: {
+      userId,
       date: {
         gte: startOfDay,
         lt: endOfDay,
@@ -94,6 +110,7 @@ export const getTodayExpenses = async () => {
       category: {
         select: {
           name: true,
+          color: true,
         },
       },
     },
@@ -103,9 +120,14 @@ export const getTodayExpenses = async () => {
 };
 
 export const getThisWeekExpenses = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
+
   const range = getWeekRange();
   const expenses = await db.expense.findMany({
     where: {
+      userId,
       date: {
         gte: range.startOfWeek,
         lt: range.endOfWeek,
@@ -115,6 +137,7 @@ export const getThisWeekExpenses = async () => {
       category: {
         select: {
           name: true,
+          color: true,
         },
       },
     },
@@ -124,9 +147,13 @@ export const getThisWeekExpenses = async () => {
 };
 
 export const getExpensesForGraph = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const range = getLastThreeMonth();
   const expenses = await db.expense.findMany({
     where: {
+      userId,
       date: {
         gte: range.threeMonthAgo,
         lt: range.today,
@@ -139,6 +166,7 @@ export const getExpensesForGraph = async () => {
       category: {
         select: {
           name: true,
+          color: true,
         },
       },
     },
@@ -148,6 +176,9 @@ export const getExpensesForGraph = async () => {
 };
 
 export const deleteExpense = async (id: string) => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const expense = await db.expense.delete({
     where: {
       id,
@@ -196,13 +227,18 @@ export const updateExpense = async ({
   category: string;
   lastCategoryName: string;
 }) => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
   const lastCategory = await db.category.findFirst({
     where: {
+      userId,
       name: lastCategoryName,
     },
     select: {
       id: true,
       name: true,
+      color: true,
       _count: {
         select: { expenses: true },
       },
@@ -210,13 +246,6 @@ export const updateExpense = async ({
   });
   let newCategoryId;
   if (lastCategory?.name !== category) {
-    // if (lastCategory?._count.expense === 1) {
-    //   await db.category.delete({
-    //     where: {
-    //       id: lastCategory.id,
-    //     },
-    //   });
-    // }
     newCategoryId = await db.category.findFirst({
       where: {
         name: category,
@@ -228,7 +257,9 @@ export const updateExpense = async ({
     if (!newCategoryId) {
       newCategoryId = await db.category.create({
         data: {
+          userId,
           name: category,
+          color: defaultCategoryColor,
         },
         select: {
           id: true,
@@ -263,6 +294,10 @@ export const updateExpense = async ({
 };
 
 export const getThisMonthExpenses = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
+
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -271,6 +306,7 @@ export const getThisMonthExpenses = async () => {
   const last = new Date(`${year}-${month}-${lastDay}`);
   const expenses = await db.expense.findMany({
     where: {
+      userId,
       date: {
         gte: first,
         lt: last,
@@ -279,6 +315,7 @@ export const getThisMonthExpenses = async () => {
     include: {
       category: {
         select: {
+          color: true,
           name: true,
         },
       },

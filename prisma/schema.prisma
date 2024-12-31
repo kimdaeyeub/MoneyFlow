@@ -8,13 +8,18 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  email      String   @unique
+  id         String     @id @default(uuid())
+  name       String?
+  github_id  String?    @unique
+  avatar     String?
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  email      String?    @unique
   username   String
-  password   String
+  password   String?
+  expenses   Expense[]
+  categories Category[]
+  goals      Goal[]
 }
 
 // 지출, 목표지출, 카테고리
@@ -25,17 +30,24 @@ model Expense {
   money      Int
   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId String
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
 }
 
 model Category {
   id       String    @id @default(uuid())
   name     String
   expenses Expense[]
+  user     User      @relation(fields: [userId], references: [id])
+  userId   String
+  color    String
 }
 
 model Goal {
-  id    String @id @default(uuid())
-  week  Int
-  day   Int
-  month Int
+  id     String @id @default(uuid())
+  week   Int
+  day    Int
+  month  Int
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }

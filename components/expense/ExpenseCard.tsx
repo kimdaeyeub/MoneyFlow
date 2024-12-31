@@ -8,7 +8,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Tag from "../Tag";
+import Category from "../Category";
 import {
   Dialog,
   DialogContent,
@@ -53,7 +53,10 @@ const ExpenseCard = ({ expense }: IProp) => {
       <DialogTrigger>
         <div className="w-full grid grid-cols-4 gap-1 text-sm text-gray-600 font-medium hover:bg-slate-50 bg-white dark:bg-transparent dark:text-gray-400 transition-colors duration-300">
           <div className="w-full py-4 flex justify-center items-center">
-            <Tag name={expense.category.name} />
+            <Category
+              name={expense.category.name}
+              color={expense.category.color}
+            />
           </div>
           <div className="w-full py-4 flex justify-center items-center">
             <span>{expense.date.toLocaleDateString("kr-ko")}</span>

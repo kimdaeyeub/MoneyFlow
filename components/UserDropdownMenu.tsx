@@ -8,6 +8,7 @@ interface IProp {
 }
 
 const UserDropdownMenu = ({ avatar }: IProp) => {
+  // TODO: shadcn Dropdown menu로 변경
   const [open, setOpen] = useState(false);
   return (
     <div className="relative">

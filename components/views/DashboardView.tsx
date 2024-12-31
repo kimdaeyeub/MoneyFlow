@@ -12,7 +12,7 @@ import ExpenseList from "../expense/ExpenseList";
 import GoalBtn from "../btn/GoalBtn";
 
 interface IProp {
-  expenses: Expense[];
+  expenses: Expense[] | null;
   goal: Goal | null;
   circularProgressbar: {
     today: number;
@@ -24,7 +24,7 @@ interface IProp {
 const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
   return (
     <>
-      <Card>
+      <Card className="dark:bg-transparent">
         {goal === null ? (
           <div className="min-h-32 flex flex-col gap-3 justify-center items-center px-4">
             <CardHeader className="w-full">

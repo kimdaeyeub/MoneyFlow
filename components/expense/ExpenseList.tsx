@@ -10,13 +10,15 @@ import { Card } from "../ui/card";
 import ExpenseCard from "./ExpenseCard";
 
 interface IProp {
-  expenses: Expense[];
+  expenses: Expense[] | null;
 }
 
 const ExpenseList = ({ expenses }: IProp) => {
+  if (!expenses) return null;
+
   if (expenses.length === 0) {
     return (
-      <Card className="min-h-40 mt-5 p-5 w-full flex items-center justify-center">
+      <Card className="min-h-40 mt-5 p-5 w-full flex items-center justify-center dark:bg-transparent">
         <span className="font-medium text-gray-400 text-sm">
           해당 날짜의 지출내역이 존재하지 않습니다.
         </span>

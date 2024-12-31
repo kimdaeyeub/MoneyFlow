@@ -8,28 +8,36 @@
 import React from "react";
 import { Theme } from "../Theme";
 import Link from "next/link";
-import LogoutBtn from "../btn/LogoutBtn";
+import db from "@/lib/db";
+import UserDropdownMenu from "../UserDropdownMenu";
 
-const Navbar = ({ userId }: { userId?: string }) => {
+const getUserInfo = async (userId: string | undefined) => {
+  if (!userId) return null;
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+  return user;
+};
+
+const Navbar = async ({ userId }: { userId?: string }) => {
+  const userInfo = await getUserInfo(userId);
+  // TODO: Dark모드일때 배경색이 transparent이다 보니 뒤에 있는 콘텐츠가 보임.
   return (
-    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-black flex justify-between items-center">
+    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-transparent flex justify-between items-center">
       <p className="text-2xl font-bold">
         Money<span className="text-[#FF7000]">Flow</span>
       </p>
       <input
         type="text"
         placeholder="Search anything..."
-        className="w-2/4 px-3 py-3 rounded-md bg-gray-100 dark:bg-gray-900 dark:border-gray-700 border outline-none"
+        className="w-2/4 px-3 py-3 rounded-md bg-gray-100 dark:bg-transparent dark:border-gray-700 border outline-none"
       />
       <div className="flex gap-4 items-center">
         <Theme />
         {userId ? (
-          <div className="relative">
-            <div className="rounded-full size-12 bg-gray-100" />
-            <div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-md border">
-              <LogoutBtn />
-            </div>
-          </div>
+          <UserDropdownMenu avatar={userInfo?.avatar} />
         ) : (
           <Link href="/sign-in">Login</Link>
         )}

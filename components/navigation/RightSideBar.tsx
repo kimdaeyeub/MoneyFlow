@@ -9,7 +9,7 @@ import React from "react";
 import CategoryCard from "../CategoryCard";
 
 interface IProp {
-  categories: Category[];
+  categories: Category[] | null;
 }
 
 const RightSideBar = ({ categories }: IProp) => {
@@ -17,14 +17,15 @@ const RightSideBar = ({ categories }: IProp) => {
     <nav className="sticky right-0 top-0 h-screen border-l dark:border-none shadow-sm pt-32 px-7 lg:w-[266px]">
       <h1 className="font-bold text-xl">Category</h1>
       <ul className="flex flex-col justify-start items-start gap-5 mt-7">
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.id}
-            tag={category.name}
-            count={category.expenses.length}
-            id={category.id}
-          />
-        ))}
+        {categories &&
+          categories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              tag={category.name}
+              count={category.expenses.length}
+              id={category.id}
+            />
+          ))}
       </ul>
     </nav>
   );
