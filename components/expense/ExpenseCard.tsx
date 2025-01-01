@@ -30,6 +30,15 @@ const ExpenseCard = ({ expense }: IProp) => {
 
   async function onSubmit(values: z.infer<typeof expenseFormSchema>) {
     const { title, category, date, money } = values;
+    // const currDate = new Date(date); // Date 객체로 변환
+    // const koreaOffset = 9 * 60; // UTC+9:00 (분 단위)
+    // const localOffset = currDate.getTimezoneOffset(); // 현재 시스템의 타임존 오프셋 (분 단위)
+
+    // // 한국 시간으로 변환
+    // const koreaTime = new Date(
+    //   currDate.getTime() + (koreaOffset - localOffset) * 60 * 1000
+    // );
+
     const updatedExpense = await updateExpense({
       name: title,
       category,

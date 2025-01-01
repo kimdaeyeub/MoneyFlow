@@ -14,7 +14,7 @@ interface IProp {
 
 const RightSideBar = ({ categories }: IProp) => {
   return (
-    <nav className="sticky right-0 top-0 h-screen border-l dark:border-gray-800 shadow-sm pt-32 px-7 lg:w-[300px]">
+    <nav className="hidden lg:block sticky right-0 top-0 h-screen border-l dark:border-gray-800 shadow-sm pt-32 px-7 xl:w-[300px] lg:w-[250px]">
       <h1 className="font-bold text-xl">카테고리</h1>
       <ul className="flex flex-col justify-start items-start gap-5 mt-7">
         {categories &&

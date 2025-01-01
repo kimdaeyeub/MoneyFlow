@@ -23,10 +23,17 @@ const AddExpenseBtn = () => {
   const [open, setOpen] = useState(false);
   async function onSubmit(values: z.infer<typeof expenseFormSchema>) {
     const { title, category, date, money } = values;
+    const currDate = new Date(date);
+    const koreaOffset = 9 * 60;
+    const localOffset = currDate.getTimezoneOffset();
+
+    const koreaTime = new Date(
+      currDate.getTime() + (koreaOffset - localOffset) * 60 * 1000
+    );
     const newExpnese = await addExpense({
       title,
       category,
-      date,
+      date: koreaTime,
       expense: money,
     });
     if (newExpnese) {

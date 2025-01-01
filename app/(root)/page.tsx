@@ -80,11 +80,18 @@ export default async function Home({
   if (view === "graph view") {
     const expenses: Expense[] | null = await getExpensesForGraph();
     const formatData = (expenses: Expense[]) => {
-      return expenses.map((expense) => ({
-        date: expense.date.toISOString().split("T")[0],
-        money: expense.money,
-      }));
+      const groupedData = expenses.reduce((acc, expense) => {
+        const date = expense.date.toISOString().split("T")[0];
+        if (!acc[date]) {
+          acc[date] = { date, money: 0 };
+        }
+        acc[date].money += expense.money;
+        return acc;
+      }, {} as Record<string, { date: string; money: number }>);
+
+      return Object.values(groupedData);
     };
+    console.log(formatData(expenses!));
     return (
       <section>{expenses && <GraphView data={formatData(expenses)} />}</section>
     );

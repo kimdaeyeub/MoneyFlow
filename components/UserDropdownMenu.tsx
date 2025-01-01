@@ -8,6 +8,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getCategoriesList } from "@/lib/actions/category.action";
+import CategoryCard from "./CategoryCard";
 
 interface IProp {
   avatar: string | null | undefined;
@@ -16,16 +18,8 @@ interface IProp {
 const UserDropdownMenu = async ({ avatar }: IProp) => {
   // TODO: shadcn Dropdown menu로 변경
   const username = await getUserName();
+  const categories = await getCategoriesList();
   return (
-    // <div className="relative">
-
-    //   {open && (
-    //     <div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-md border">
-    //       <LogoutBtn />
-    //     </div>
-    //   )}
-    // </div>
-
     <DropdownMenu>
       <DropdownMenuTrigger>
         {avatar ? (
@@ -43,6 +37,21 @@ const UserDropdownMenu = async ({ avatar }: IProp) => {
         <DropdownMenuItem>
           <LogoutBtn />
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuLabel className="lg:hidden flex flex-col items-start gap-3 py-2">
+          <h1>카테고리</h1>
+          <div className="w-full flex flex-wrap gap-2">
+            {categories &&
+              categories.map((category) => (
+                <CategoryCard
+                  key={category.id}
+                  tag={category.name}
+                  count={category.expenses.length}
+                  id={category.id}
+                />
+              ))}
+          </div>
+        </DropdownMenuLabel>
       </DropdownMenuContent>
     </DropdownMenu>
   );

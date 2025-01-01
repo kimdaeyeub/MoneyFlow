@@ -19,7 +19,7 @@ const CategoryCard = ({
   id: string;
 }) => {
   return (
-    <li className="w-full flex justify-between items-center">
+    <li className="lg:w-full w-fit flex justify-between items-center">
       <Link
         href={`/categories/${id}`}
         className="text-[#858ead] bg-[#f4f6f8] dark:bg-gray-800 border dark:border-gray-700 px-5 py-1.5 rounded-md font-medium text-sm"
@@ -27,7 +27,9 @@ const CategoryCard = ({
         {tag}
       </Link>
 
-      <span className="text-[#3f4354] font-semibold text-sm">{count}</span>
+      <span className="text-[#3f4354] font-semibold text-sm hidden lg:block">
+        {count}
+      </span>
     </li>
   );
 };

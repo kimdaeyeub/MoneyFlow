@@ -24,7 +24,7 @@ interface IProp {
 const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
   return (
     <>
-      <Card className="dark:bg-transparent">
+      <Card className="dark:bg-transparent hidden xl:block">
         {goal === null ? (
           <div className="min-h-32 flex flex-col gap-3 justify-center items-center px-4">
             <CardHeader className="w-full">

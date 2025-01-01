@@ -165,7 +165,7 @@ export const getExpensesForGraph = async () => {
       userId,
       date: {
         gte: range.threeMonthAgo,
-        lt: range.today,
+        lte: range.today,
       },
     },
     orderBy: {
