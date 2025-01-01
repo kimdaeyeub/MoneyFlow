@@ -1,35 +1,50 @@
-"use client";
-
-import React, { useState } from "react";
+import { getUserName } from "@/lib/actions/user.action";
 import LogoutBtn from "./btn/LogoutBtn";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface IProp {
   avatar: string | null | undefined;
 }
 
-const UserDropdownMenu = ({ avatar }: IProp) => {
+const UserDropdownMenu = async ({ avatar }: IProp) => {
   // TODO: shadcn Dropdown menu로 변경
-  const [open, setOpen] = useState(false);
+  const username = await getUserName();
   return (
-    <div className="relative">
-      {avatar ? (
-        <div
-          style={{ backgroundImage: `url(${avatar})` }}
-          onClick={() => setOpen(!open)}
-          className="rounded-full size-12 bg-gray-100 bg-cover bg-center"
-        />
-      ) : (
-        <div
-          onClick={() => setOpen(!open)}
-          className="rounded-full size-12 bg-blue-300"
-        />
-      )}
-      {open && (
-        <div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-md border">
+    // <div className="relative">
+
+    //   {open && (
+    //     <div className="absolute top-full right-0 mt-2 bg-white rounded-md shadow-md border">
+    //       <LogoutBtn />
+    //     </div>
+    //   )}
+    // </div>
+
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        {avatar ? (
+          <div
+            style={{ backgroundImage: `url(${avatar})` }}
+            className="rounded-full size-12 bg-gray-100 bg-cover bg-center"
+          />
+        ) : (
+          <div className="rounded-full size-12 bg-blue-300" />
+        )}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-96">
+        <DropdownMenuLabel className="py-3">{username}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
           <LogoutBtn />
-        </div>
-      )}
-    </div>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 

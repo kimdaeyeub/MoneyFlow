@@ -159,3 +159,22 @@ export const login = async (prevState: unknown, formData: FormData) => {
     }
   }
 };
+
+export const getUserName = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) redirect("/sign-in");
+
+  const user = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      name: true,
+    },
+  });
+
+  if (!user) redirect("/sign-in");
+
+  return user?.name;
+};
