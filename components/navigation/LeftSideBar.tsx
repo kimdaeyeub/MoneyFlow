@@ -16,7 +16,7 @@ const LeftSideBar = async () => {
   const session = await getSession();
   const userId = session.id;
   return (
-    <section className="sticky left-0 top-0 h-screen border-r dark:border-none shadow-sm pt-32 px-7 flex flex-col justify-between items-center lg:w-[266px] pb-10">
+    <section className="sticky left-0 top-0 h-screen border-r dark:border-gray-800 shadow-sm pt-32 px-7 flex flex-col justify-between items-center lg:w-[300px] pb-10">
       <div className="flex flex-col justify-start items-center gap-6 w-full">
         {lists.map((item) => (
           <NavLink key={item} item={item} />

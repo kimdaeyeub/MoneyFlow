@@ -38,11 +38,11 @@ const AddExpenseBtn = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="w-full">
         <div className="text-center text-lg w-full py-3 btn-bg font-bold text-white rounded-lg">
-          Add Expense
+          지출 내역 추가
         </div>
       </DialogTrigger>
       <DialogContent>
-        <DialogTitle>Add Expense</DialogTitle>
+        <DialogTitle className="text-xl font-bold">지출 추가</DialogTitle>
         <ExpenseForm
           onSubmit={onSubmit}
           defaultValues={{ title: "", category: "", date: undefined, money: 0 }}

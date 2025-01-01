@@ -70,6 +70,9 @@ export const getExpensesList = async () => {
     where: {
       userId,
     },
+    orderBy: {
+      date: "desc",
+    },
     include: {
       category: {
         select: {
@@ -106,6 +109,9 @@ export const getTodayExpenses = async () => {
         lt: endOfDay,
       },
     },
+    orderBy: {
+      date: "desc",
+    },
     include: {
       category: {
         select: {
@@ -132,6 +138,9 @@ export const getThisWeekExpenses = async () => {
         gte: range.startOfWeek,
         lt: range.endOfWeek,
       },
+    },
+    orderBy: {
+      date: "desc",
     },
     include: {
       category: {
@@ -281,7 +290,7 @@ export const updateExpense = async ({
     },
   });
 
-  if (lastCategory?._count.expenses === 1) {
+  if (lastCategory?._count.expenses === 0) {
     await db.category.delete({
       where: {
         id: lastCategory.id,
@@ -311,6 +320,9 @@ export const getThisMonthExpenses = async () => {
         gte: first,
         lt: last,
       },
+    },
+    orderBy: {
+      date: "desc",
     },
     include: {
       category: {

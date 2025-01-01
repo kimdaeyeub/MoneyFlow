@@ -25,15 +25,15 @@ const Navbar = async ({ userId }: { userId?: string }) => {
   const userInfo = await getUserInfo(userId);
   // TODO: Dark모드일때 배경색이 transparent이다 보니 뒤에 있는 콘텐츠가 보임.
   return (
-    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-transparent flex justify-between items-center">
+    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
       <p className="text-2xl font-bold">
         Money<span className="text-[#FF7000]">Flow</span>
       </p>
-      <input
+      {/* <input
         type="text"
         placeholder="Search anything..."
         className="w-2/4 px-3 py-3 rounded-md bg-gray-100 dark:bg-transparent dark:border-gray-700 border outline-none"
-      />
+      /> */}
       <div className="flex gap-4 items-center">
         <Theme />
         {userId ? (

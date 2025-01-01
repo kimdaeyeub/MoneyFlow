@@ -27,20 +27,20 @@ const ExpenseList = ({ expenses }: IProp) => {
   }
   return (
     <Card className="min-h-40 mt-5 p-5 w-full flex items-center dark:bg-transparent">
-      <div className="w-full h-full flex flex-col divide-y">
+      <div className="w-full h-full flex flex-col divide-y dark:divide-gray-800">
         {/* Header */}
-        <div className="w-full grid grid-cols-4 gap-1 border-b">
+        <div className="w-full grid grid-cols-4 gap-1 border-b dark:border-gray-800">
           <div className="w-full py-3 flex justify-center items-center">
-            <span className="font-medium text-sm text-gray-500">Category</span>
+            <span className="font-medium text-sm text-gray-500">카테고리</span>
           </div>
           <div className="w-full py-3 flex justify-center items-center">
-            <span className="font-medium text-sm text-gray-500">Date</span>
+            <span className="font-medium text-sm text-gray-500">날짜</span>
           </div>
           <div className="w-full py-3 flex justify-center items-center">
-            <span className="font-medium text-sm text-gray-500">Name</span>
+            <span className="font-medium text-sm text-gray-500">지출 내용</span>
           </div>
           <div className="w-full py-3 flex justify-center items-center">
-            <span className="font-medium text-sm text-gray-500">Amount</span>
+            <span className="font-medium text-sm text-gray-500">금액</span>
           </div>
         </div>
         {expenses.map((expense) => (

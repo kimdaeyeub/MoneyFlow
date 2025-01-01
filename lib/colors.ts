@@ -1,5 +1,5 @@
 export const categoryColorList = [
-  "#ffb142",
+  "#FF7000",
   "#ff793f",
   "#706fd3",
   "#d1ccc0",

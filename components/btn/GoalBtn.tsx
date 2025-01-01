@@ -48,12 +48,14 @@ const GoalBtn = ({ mode, goal }: IProp) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
         <div className="px-4 py-2 rounded-full btn-bg text-white font-bold">
-          {mode === "Add" ? "Add Goal" : "Update Goal"}
+          {mode === "Add" ? "목표 추가하기" : "목표 수정하기"}
         </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add and Update Goal</DialogTitle>
+          <DialogTitle>
+            {mode === "Add" ? "새로운 목표 설정" : "목표 수정하기"}
+          </DialogTitle>
         </DialogHeader>
         <GoalForm
           onSubmit={mode === "Add" ? addGoal : editGoal}

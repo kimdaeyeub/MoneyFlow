@@ -71,9 +71,11 @@ const ExpenseCard = ({ expense }: IProp) => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit or Delete</DialogTitle>
+          <DialogTitle className="text-xl font-bold">
+            지출 내역 삭제 및 수정
+          </DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start mt-4">
           <ExpenseForm
             mode="EDIT"
             onSubmit={onSubmit}

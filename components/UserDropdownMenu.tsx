@@ -21,7 +21,7 @@ const UserDropdownMenu = ({ avatar }: IProp) => {
       ) : (
         <div
           onClick={() => setOpen(!open)}
-          className="rounded-full size-12 bg-gray-100"
+          className="rounded-full size-12 bg-blue-300"
         />
       )}
       {open && (

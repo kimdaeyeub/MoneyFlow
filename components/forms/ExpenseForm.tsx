@@ -62,9 +62,9 @@ export function ExpenseForm({
           name="title"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>title</FormLabel>
+              <FormLabel>지출 내용</FormLabel>
               <FormControl>
-                <Input placeholder="title" {...field} />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -75,9 +75,9 @@ export function ExpenseForm({
           name="category"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>category</FormLabel>
+              <FormLabel>카테고리</FormLabel>
               <FormControl>
-                <Input placeholder="category" {...field} />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -88,9 +88,9 @@ export function ExpenseForm({
           name="money"
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>expense</FormLabel>
+              <FormLabel>비용</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="expense" {...field} />
+                <Input type="number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,14 +101,14 @@ export function ExpenseForm({
           name="date"
           render={({ field }) => (
             <FormItem className="flex flex-col w-full">
-              <FormLabel>Date of birth</FormLabel>
+              <FormLabel>지출 날짜</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-full pl-3 text-left font-normal",
+                        "w-full pl-3 text-left font-normal py-5",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -116,14 +116,14 @@ export function ExpenseForm({
                         // format(field.value, "PPP")
                         <span>{field.value.toLocaleDateString()}</span>
                       ) : (
-                        <span>Pick a date</span>
+                        <span></span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent
-                  className="w-auto p-0 bg-white border shadow-sm rounded-md"
+                  className="w-auto p-0 bg-white dark:bg-[#1E293B] dark:border-gray-600 border shadow-sm rounded-md"
                   align="start"
                 >
                   <Calendar
@@ -138,17 +138,18 @@ export function ExpenseForm({
             </FormItem>
           )}
         />
-        <div className="w-full flex justify-end gap-5">
+        <div className="w-full flex justify-end gap-5 pt-10">
           {mode === "EDIT" && (
-            <Button
+            <div
               onClick={deleteAction}
-              type="button"
-              className="bg-red-500 px-7 hover:bg-red-600"
+              className="bg-red-500 px-5 text-center py-2 rounded-md text-white hover:bg-red-600 cursor-pointer"
             >
-              Delete
-            </Button>
+              삭제하기
+            </div>
           )}
-          <Button type="submit">{mode === "ADD" ? "Submit" : "Update"}</Button>
+          <Button type="submit">
+            {mode === "ADD" ? "추가하기" : "수정하기"}
+          </Button>
         </div>
       </form>
     </Form>

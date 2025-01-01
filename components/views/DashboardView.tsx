@@ -29,7 +29,7 @@ const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
           <div className="min-h-32 flex flex-col gap-3 justify-center items-center px-4">
             <CardHeader className="w-full">
               <div className="w-full flex justify-between items-center">
-                <span className="text-2xl font-bold">초과 금지 카드</span>
+                <span className="text-2xl font-bold">목표 추적기</span>
                 <GoalBtn mode="Add" />
               </div>
             </CardHeader>
@@ -41,7 +41,7 @@ const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
           <>
             <CardHeader>
               <div className="w-full flex justify-between items-center">
-                <span className="text-2xl font-bold">초과 금지 카드</span>
+                <span className="text-2xl font-bold">목표 추적기</span>
                 <GoalBtn mode={goal !== null ? "Edit" : "Add"} goal={goal} />
               </div>
             </CardHeader>

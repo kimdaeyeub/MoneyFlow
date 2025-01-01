@@ -42,7 +42,7 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
           name="day"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-nowrap">Daily Goal</FormLabel>
+              <FormLabel className="text-nowrap">하루 목표</FormLabel>
               <FormControl>
                 <Input type="number" placeholder="shadcn" {...field} />
               </FormControl>
@@ -55,7 +55,7 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
           name="week"
           render={({ field }) => (
             <FormItem className="mt-3">
-              <FormLabel className="text-nowrap">Weekly Goal</FormLabel>
+              <FormLabel className="text-nowrap">일주일 목표</FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} type="number" />
               </FormControl>
@@ -68,7 +68,7 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
           name="month"
           render={({ field }) => (
             <FormItem className="mt-3">
-              <FormLabel className="text-nowrap">Monthly Goal</FormLabel>
+              <FormLabel className="text-nowrap">한달 목표</FormLabel>
               <FormControl>
                 <Input placeholder="shadcn" {...field} type="number" />
               </FormControl>
@@ -77,8 +77,8 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
           )}
         />
         <div className="w-full flex justify-end">
-          <Button className="mt-6" type="submit">
-            Submit
+          <Button className="mt-6 px-6" type="submit">
+            등록
           </Button>
         </div>
       </form>

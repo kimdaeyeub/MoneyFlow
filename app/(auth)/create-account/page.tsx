@@ -17,6 +17,7 @@ const CreateAccountPage = () => {
 
   return (
     <div className="w-full flex flex-col gap-4">
+      {/* TODO: 로고 넣기 */}
       <form action={action} className="flex flex-col gap-10 w-full">
         <div className="w-full flex flex-col gap-3">
           <AuthInput
@@ -72,10 +73,10 @@ const CreateAccountPage = () => {
           />
         </div>
         <div className="w-full flex gap-4 flex-col justify-center items-center">
-          <button className="w-full btn-bg font-semibold text-white rounded-md py-3">
+          <button className="w-full btn-bg font-semibold text-white rounded-md py-4">
             회원가입
           </button>
-          <div className="flex justify-center gap-2 font-medium text-sm items-center">
+          <div className="flex justify-start w-full gap-2 font-medium items-center">
             <p>이미 계정이 존재하시나요?</p>
             <Link
               href="/sign-in"
@@ -86,7 +87,6 @@ const CreateAccountPage = () => {
           </div>
         </div>
       </form>
-      <div className="w-full h-0.5 rounded-full bg-gray-200" />
       <GithubBtn />
     </div>
   );
