@@ -7,6 +7,7 @@
 
 "use server";
 
+import { revalidatePath } from "next/cache";
 import db from "../db";
 import getSession from "../session";
 
@@ -29,6 +30,7 @@ export const updateCategory = async ({
 
 export const deleteCategory = async ({ id }: { id: string }) => {
   const deletedCategory = await db.category.delete({ where: { id } });
+  revalidatePath("/");
   return deletedCategory;
 };
 

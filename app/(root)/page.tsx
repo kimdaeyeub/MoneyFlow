@@ -38,7 +38,7 @@ export default async function Home({
     const goal = await getGoal();
 
     const calcExpenses = (expenses: Expense[] | null) => {
-      if (!expenses) return 0;
+      if (!expenses || expenses.length === 0) return 0;
       const money = expenses.map((expense) => expense.money);
       return money.reduce((a, b) => a + b);
     };
