@@ -24,7 +24,7 @@ const DeleteCategoryBtn = ({ categoryId }: { categoryId: string }) => {
   };
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
-      <AlertDialogTrigger className="text-red-500">삭제하기</AlertDialogTrigger>
+      <AlertDialogTrigger className="text-red-500">삭제</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>해당 카테고리를 삭제하시겠습니까?</AlertDialogTitle>

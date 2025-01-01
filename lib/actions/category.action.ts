@@ -14,17 +14,20 @@ import getSession from "../session";
 export const updateCategory = async ({
   id,
   name,
+  color,
 }: {
   id: string;
   name: string;
+  color: string;
 }) => {
   const session = await getSession();
   const userId = session.id;
   if (!userId) return null;
   const updatedCategory = await db.category.update({
     where: { id },
-    data: { name },
+    data: { name, color },
   });
+  revalidatePath("/");
   return updatedCategory;
 };
 
