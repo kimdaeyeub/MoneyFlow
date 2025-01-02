@@ -114,7 +114,7 @@ export function ExpenseForm({
                     >
                       {field.value ? (
                         // format(field.value, "PPP")
-                        <span>{field.value.toLocaleDateString()}</span>
+                        <span>{field.value.toDateString()}</span>
                       ) : (
                         <span></span>
                       )}

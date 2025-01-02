@@ -20,7 +20,7 @@ const CreateAccountPage = () => {
     <div className="w-full flex flex-col gap-4">
       {/* TODO: 로고 넣기 */}
       <div className="w-full flex justify-center">
-        <Image src="/images/logo.png" width={45} height={45} alt="logo" />
+        <Image src="/icons/logo.png" width={45} height={45} alt="logo" />
       </div>
       <form action={action} className="flex flex-col gap-10 w-full">
         <div className="w-full flex flex-col gap-3">

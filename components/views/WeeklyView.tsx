@@ -4,7 +4,6 @@
 생성 일자: 2024-12-11
 수정 일자: 2024-12-29
  */
-
 import React from "react";
 import ExpenseList from "../expense/ExpenseList";
 
@@ -13,7 +12,6 @@ interface IProp {
 }
 
 const WeeklyView = ({ expenses }: IProp) => {
-  // Date.getDay() 메서드가 반환하는 숫자를 이용하여 요일을 반환
   const getDayOfWeek = (day: number) => {
     switch (day) {
       case 0:

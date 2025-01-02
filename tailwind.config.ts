@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        "auth-dark": "url('/images/auth-dark.png')",
+        "auth-light": "url('/images/auth-light.png')",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

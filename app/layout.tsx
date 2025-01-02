@@ -25,7 +25,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko-kr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased scrollbar-hide`}
       >

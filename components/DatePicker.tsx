@@ -24,18 +24,18 @@ const DatePicker = () => {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant={"outline"}
-          className={cn(
-            "w-[240px] justify-start text-left font-normal",
-            !date && "text-muted-foreground"
-          )}
-        >
+      <Button
+        variant={"outline"}
+        className={cn(
+          "w-[240px] justify-start text-left font-normal",
+          !date && "text-muted-foreground"
+        )}
+      >
+        <PopoverTrigger>
           <CalendarIcon />
           {date ? format(date, "PPP") : <span>Pick a date</span>}
-        </Button>
-      </PopoverTrigger>
+        </PopoverTrigger>
+      </Button>
       <PopoverContent className="w-auto p-0 z-50" align="start">
         <Calendar
           mode="single"

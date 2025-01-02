@@ -22,7 +22,7 @@ const LoginPage = () => {
             돈 관리를 체계적이고, 시각적으로
           </span>
         </div>
-        <Image src="/images/logo.png" width={45} height={45} alt="logo" />
+        <Image src="/icons/logo.png" width={45} height={45} alt="logo" />
       </div>
       <form action={action} className="flex flex-col gap-8 w-full">
         <div className="w-full flex flex-col gap-3">
