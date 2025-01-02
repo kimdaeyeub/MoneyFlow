@@ -20,6 +20,22 @@ import {
 import { getGoal } from "@/lib/actions/goal.action";
 import { redirect } from "next/navigation";
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ view: string }>;
+}) {
+  const { view } = await searchParams;
+  const page = view
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+  return {
+    title: `MoneyFlow | ${page}`,
+    description: "MoneyFlow 메인 콘텐츠 화면입니다.",
+  };
+}
+
 export default async function Home({
   searchParams,
 }: {

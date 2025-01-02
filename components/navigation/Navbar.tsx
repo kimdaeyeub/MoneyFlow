@@ -28,7 +28,7 @@ const Navbar = async ({ userId }: { userId?: string }) => {
   return (
     <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
       <div className="flex gap-1 justify-center items-center">
-        <Image src="/images/logo.png" width={40} height={40} alt="logo" />
+        <Image src="/icons/logo.png" width={40} height={40} alt="logo" />
         <p className="text-2xl font-bold">
           Money<span className="text-[#FF7000]">Flow</span>
         </p>

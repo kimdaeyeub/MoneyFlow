@@ -11,6 +11,20 @@ import { getCategoryById } from "@/lib/actions/category.action";
 import { redirect } from "next/navigation";
 import React from "react";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const category = await getCategoryById({ id });
+  if (!category) redirect("/");
+  return {
+    title: `MoneyFlow | ${category?.name}`,
+    description: "MoneyFlow 카테고리별 내역을 보여주는 화면입니다.",
+  };
+}
+
 const CategoryDetail = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
   const category = await getCategoryById({ id });
