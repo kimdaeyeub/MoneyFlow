@@ -84,7 +84,7 @@ const CreateAccountForm = () => {
             <p>이미 계정이 존재하시나요?</p>
             <Link
               href="/sign-in"
-              className="text-orange-300 font-medium hover:underline underline-offset-2"
+              className="text-[#FF7000] font-semibold hover:underline underline-offset-2"
             >
               로그인
             </Link>

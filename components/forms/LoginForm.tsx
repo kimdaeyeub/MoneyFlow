@@ -54,7 +54,7 @@ const LoginForm = () => {
             <p>계정이 존재하지 않으신가요?</p>
             <Link
               href="/create-account"
-              className="text-orange-300 font-medium hover:underline underline-offset-2"
+              className="text-[#FF7000] font-semibold hover:underline underline-offset-2"
             >
               회원가입
             </Link>
