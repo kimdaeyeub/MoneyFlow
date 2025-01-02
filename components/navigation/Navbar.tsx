@@ -10,6 +10,7 @@ import { Theme } from "../Theme";
 import Link from "next/link";
 import db from "@/lib/db";
 import UserDropdownMenu from "../UserDropdownMenu";
+import Image from "next/image";
 
 const getUserInfo = async (userId: string | undefined) => {
   if (!userId) return null;
@@ -26,14 +27,12 @@ const Navbar = async ({ userId }: { userId?: string }) => {
   // TODO: Dark모드일때 배경색이 transparent이다 보니 뒤에 있는 콘텐츠가 보임.
   return (
     <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
-      <p className="text-2xl font-bold">
-        Money<span className="text-[#FF7000]">Flow</span>
-      </p>
-      {/* <input
-        type="text"
-        placeholder="Search anything..."
-        className="w-2/4 px-3 py-3 rounded-md bg-gray-100 dark:bg-transparent dark:border-gray-700 border outline-none"
-      /> */}
+      <div className="flex gap-1 justify-center items-center">
+        <Image src="/images/logo.png" width={40} height={40} alt="logo" />
+        <p className="text-2xl font-bold">
+          Money<span className="text-[#FF7000]">Flow</span>
+        </p>
+      </div>
       <div className="flex gap-4 items-center">
         <Theme />
         {userId ? (

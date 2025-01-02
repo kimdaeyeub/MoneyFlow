@@ -4,6 +4,7 @@ import GithubBtn from "@/components/btn/GithubBtn";
 import AuthInput from "@/components/forms/AuthInput";
 import { createAccount } from "@/lib/actions/user.action";
 import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useActionState, useState } from "react";
 
@@ -18,6 +19,9 @@ const CreateAccountPage = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       {/* TODO: 로고 넣기 */}
+      <div className="w-full flex justify-center">
+        <Image src="/images/logo.png" width={45} height={45} alt="logo" />
+      </div>
       <form action={action} className="flex flex-col gap-10 w-full">
         <div className="w-full flex flex-col gap-3">
           <AuthInput

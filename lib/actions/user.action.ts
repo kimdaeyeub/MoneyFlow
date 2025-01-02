@@ -170,11 +170,11 @@ export const getUserName = async () => {
       id: userId,
     },
     select: {
-      name: true,
+      username: true,
     },
   });
 
   if (!user) redirect("/sign-in");
 
-  return user?.name;
+  return user?.username;
 };

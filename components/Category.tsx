@@ -16,7 +16,7 @@ const Category = ({ name, color }: IProp) => {
   return (
     <div
       style={{ backgroundColor: color }}
-      className="px-4 py-1 text-center rounded-full text-white text-sm"
+      className="px-4 py-1 text-center rounded-full font-semibold text-white text-sm"
     >
       {name}
     </div>

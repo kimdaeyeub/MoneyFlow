@@ -65,6 +65,7 @@ const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
           </>
         )}
       </Card>
+      <h1 className="text-3xl font-bold xl:hidden block">Dashboard</h1>
       <ExpenseList expenses={expenses} />
     </>
   );
