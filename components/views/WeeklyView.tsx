@@ -6,12 +6,11 @@
  */
 import React from "react";
 import ExpenseList from "../expense/ExpenseList";
+import { getThisWeekExpenses } from "@/lib/actions/expense.action";
 
-interface IProp {
-  expenses: Expense[] | null;
-}
+const WeeklyView = async () => {
+  const expenses: Expense[] | null = await getThisWeekExpenses();
 
-const WeeklyView = ({ expenses }: IProp) => {
   const getDayOfWeek = (day: number) => {
     switch (day) {
       case 0:

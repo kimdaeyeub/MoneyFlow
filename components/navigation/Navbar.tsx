@@ -6,11 +6,11 @@
  */
 
 import React from "react";
-import { Theme } from "../Theme";
+import { Theme } from "../theme/Theme";
 import Link from "next/link";
 import db from "@/lib/db";
-import UserDropdownMenu from "../UserDropdownMenu";
 import Image from "next/image";
+import UserDropdownMenu from "../btn/UserDropdownMenu";
 
 const getUserInfo = async (userId: string | undefined) => {
   if (!userId) return null;

@@ -7,12 +7,11 @@
 
 import React from "react";
 import ExpenseList from "../expense/ExpenseList";
+import { getTodayExpenses } from "@/lib/actions/expense.action";
 
-interface IProp {
-  expenses: Expense[] | null;
-}
+const TodayView = async () => {
+  const expenses: Expense[] | null = await getTodayExpenses();
 
-const TodayView = ({ expenses }: IProp) => {
   return (
     <>
       <h1 className="font-bold text-2xl ml-3">오늘 지출 현황</h1>

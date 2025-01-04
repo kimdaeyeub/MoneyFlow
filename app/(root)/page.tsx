@@ -5,20 +5,14 @@
 수정 일자: 2024-12-29
  */
 
+import ExpenseListSkeleton from "@/components/skeleton/ExpenseListSkeleton";
+import WeeklyViewSkeleton from "@/components/skeleton/WeeklyViewSkeleton";
 import DashboardView from "@/components/views/DashboardView";
 import GraphView from "@/components/views/GraphView";
 import TodayView from "@/components/views/TodayView";
 import WeeklyView from "@/components/views/WeeklyView";
-
-import {
-  getExpensesForGraph,
-  getExpensesList,
-  getThisMonthExpenses,
-  getThisWeekExpenses,
-  getTodayExpenses,
-} from "@/lib/actions/expense.action";
-import { getGoal } from "@/lib/actions/goal.action";
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 export async function generateMetadata({
   searchParams,
@@ -47,69 +41,60 @@ export default async function Home({
   }
 
   if (view === "dashboard") {
-    const expenses: Expense[] | null = await getExpensesList();
-    const today: Expense[] | null = await getTodayExpenses();
-    const week: Expense[] | null = await getThisWeekExpenses();
-    const month: Expense[] | null = await getThisMonthExpenses();
-    const goal = await getGoal();
-
-    const calcExpenses = (expenses: Expense[] | null) => {
-      if (!expenses || expenses.length === 0) return 0;
-      const money = expenses.map((expense) => expense.money);
-      return money.reduce((a, b) => a + b);
-    };
-
     return (
       <section>
-        <DashboardView
-          expenses={expenses}
-          goal={goal}
-          circularProgressbar={{
-            week: calcExpenses(week),
-            today: calcExpenses(today),
-            month: calcExpenses(month),
-          }}
-        />
+        <Suspense
+          fallback={
+            <div>
+              <div className="w-full h-96 rounded-xl bg-gray-800 animate-pulse" />
+              <ExpenseListSkeleton />
+            </div>
+          }
+        >
+          <DashboardView />
+        </Suspense>
       </section>
     );
   }
 
   if (view === "today") {
-    const expenses: Expense[] | null = await getTodayExpenses();
-
     return (
       <section>
-        <TodayView expenses={expenses} />
+        <Suspense
+          fallback={
+            <div>
+              <h1 className="font-bold text-2xl ml-3">오늘 지출 현황</h1>
+              <ExpenseListSkeleton />
+            </div>
+          }
+        >
+          <TodayView />
+        </Suspense>
       </section>
     );
   }
-  if (view === "this week") {
-    const expenses: Expense[] | null = await getThisWeekExpenses();
 
+  if (view === "this week") {
     return (
       <section>
-        <WeeklyView expenses={expenses} />
+        <Suspense fallback={<WeeklyViewSkeleton />}>
+          <WeeklyView />
+        </Suspense>
       </section>
     );
   }
 
   if (view === "graph view") {
-    const expenses: Expense[] | null = await getExpensesForGraph();
-    const formatData = (expenses: Expense[]) => {
-      const groupedData = expenses.reduce((acc, expense) => {
-        const date = expense.date.toISOString().split("T")[0];
-        if (!acc[date]) {
-          acc[date] = { date, money: 0 };
-        }
-        acc[date].money += expense.money;
-        return acc;
-      }, {} as Record<string, { date: string; money: number }>);
-
-      return Object.values(groupedData);
-    };
-    console.log(formatData(expenses!));
     return (
-      <section>{expenses && <GraphView data={formatData(expenses)} />}</section>
+      <section>
+        <Suspense
+          fallback={
+            <div className="w-full h-[400px] bg-gray-800 rounded-xl animate-pulse" />
+          }
+        >
+          <GraphView />
+        </Suspense>
+      </section>
     );
   }
 }

@@ -1,5 +1,4 @@
 import { getUserName } from "@/lib/actions/user.action";
-import LogoutBtn from "./btn/LogoutBtn";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,9 +7,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { getCategoriesList } from "@/lib/actions/category.action";
-import CategoryCard from "./CategoryCard";
 import Link from "next/link";
+import LogoutBtn from "./LogoutBtn";
+import DropdownCategoryList from "../category/DropdownCategoryList";
+import { Suspense } from "react";
 
 interface IProp {
   avatar: string | null | undefined;
@@ -19,7 +19,7 @@ interface IProp {
 const UserDropdownMenu = async ({ avatar }: IProp) => {
   // TODO: shadcn Dropdown menu로 변경
   const username = await getUserName();
-  const categories = await getCategoriesList();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -55,17 +55,18 @@ const UserDropdownMenu = async ({ avatar }: IProp) => {
         </div>
         <DropdownMenuLabel className="lg:hidden flex flex-col items-start gap-3 py-2">
           <h1 className="font-medium">카테고리</h1>
-          <div className="w-full flex flex-wrap gap-2">
-            {categories &&
-              categories.map((category) => (
-                <CategoryCard
-                  key={category.id}
-                  tag={category.name}
-                  count={category.expenses.length}
-                  id={category.id}
-                />
-              ))}
-          </div>
+          {/*  TODO: component화 하기 */}
+          <Suspense
+            fallback={
+              <div className="w-full flex flex-wrap gap-2">
+                {[...new Array(6)].map((_, i) => (
+                  <div key={i} className="w-20 h-5 rounded-full bg-gray-800" />
+                ))}
+              </div>
+            }
+          >
+            <DropdownCategoryList />
+          </Suspense>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>

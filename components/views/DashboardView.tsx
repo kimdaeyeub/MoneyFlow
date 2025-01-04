@@ -10,18 +10,26 @@ import CircleProgressChart from "@/components/charts/CircleProgressChart";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ExpenseList from "../expense/ExpenseList";
 import GoalBtn from "../btn/GoalBtn";
+import {
+  getExpensesList,
+  getThisMonthExpenses,
+  getThisWeekExpenses,
+  getTodayExpenses,
+} from "@/lib/actions/expense.action";
+import { getGoal } from "@/lib/actions/goal.action";
 
-interface IProp {
-  expenses: Expense[] | null;
-  goal: Goal | null;
-  circularProgressbar: {
-    today: number;
-    week: number;
-    month: number;
+const DashboardView = async () => {
+  const expenses: Expense[] | null = await getExpensesList();
+  const today: Expense[] | null = await getTodayExpenses();
+  const week: Expense[] | null = await getThisWeekExpenses();
+  const month: Expense[] | null = await getThisMonthExpenses();
+  const goal = await getGoal();
+
+  const calcExpenses = (expenses: Expense[] | null) => {
+    if (!expenses || expenses.length === 0) return 0;
+    const money = expenses.map((expense) => expense.money);
+    return money.reduce((a, b) => a + b);
   };
-}
-
-const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
   return (
     <>
       <Card className="dark:bg-transparent hidden xl:block">
@@ -48,17 +56,17 @@ const DashboardView = ({ expenses, goal, circularProgressbar }: IProp) => {
             <CardContent className="flex h-[250px]">
               <CircleProgressChart
                 goal={goal.day}
-                value={circularProgressbar.today}
+                value={calcExpenses(today)}
                 text="Daily"
               />
               <CircleProgressChart
                 goal={goal.week}
-                value={circularProgressbar.week}
+                value={calcExpenses(week)}
                 text="Weekly"
               />
               <CircleProgressChart
                 goal={goal.month}
-                value={circularProgressbar.month}
+                value={calcExpenses(month)}
                 text="Monthly"
               />
             </CardContent>

@@ -4,15 +4,17 @@
 생성 일자: 2024-12-06
 수정 일자: 2024-12-26
  */
-"use client";
 import React from "react";
-import CategoryCard from "../CategoryCard";
+import CategoryCard from "../category/CategoryCard";
+import { getCategoriesList } from "@/lib/actions/category.action";
 
-interface IProp {
-  categories: Category[] | null;
-}
+// interface IProp {
+//   categories: Category[] | null;
+// }
 
-const RightSideBar = ({ categories }: IProp) => {
+const RightSideBar = async () => {
+  const categories: Category[] | null = await getCategoriesList();
+
   return (
     <nav className="hidden lg:block sticky right-0 top-0 h-screen border-l dark:border-gray-800 shadow-sm pt-32 px-7 xl:w-[300px] lg:w-[250px]">
       <h1 className="font-bold text-xl">카테고리</h1>
