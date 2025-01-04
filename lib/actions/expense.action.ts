@@ -62,7 +62,7 @@ export const addExpense = async ({
   return newExpense;
 };
 
-export const getExpensesList = async () => {
+export const getExpensesList = async (skip: number) => {
   const session = await getSession();
   const userId = session.id;
   if (!userId) return null;
@@ -81,7 +81,10 @@ export const getExpensesList = async () => {
         },
       },
     },
+    skip: (skip - 1) * 20,
+    take: 20,
   });
+
   return expenses;
 };
 
@@ -334,4 +337,24 @@ export const getThisMonthExpenses = async () => {
     },
   });
   return expenses;
+};
+
+export const userTotalExpensesCount = async () => {
+  const session = await getSession();
+  const userId = session.id;
+  if (!userId) return null;
+  const count = await db.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      _count: {
+        select: {
+          expenses: true,
+        },
+      },
+    },
+  });
+  if (!count) return null;
+  return count?._count.expenses;
 };

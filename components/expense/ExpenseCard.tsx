@@ -20,6 +20,7 @@ import { ExpenseForm } from "../forms/ExpenseForm";
 import { expenseFormSchema } from "@/lib/validation";
 import { z } from "zod";
 import { deleteExpense, updateExpense } from "@/lib/actions/expense.action";
+import { toKoreaTime } from "@/lib/formatKoreaDate";
 
 interface IProp {
   expense: Expense;
@@ -30,14 +31,6 @@ const ExpenseCard = ({ expense }: IProp) => {
 
   async function onSubmit(values: z.infer<typeof expenseFormSchema>) {
     const { title, category, date, money } = values;
-    // const currDate = new Date(date); // Date 객체로 변환
-    // const koreaOffset = 9 * 60; // UTC+9:00 (분 단위)
-    // const localOffset = currDate.getTimezoneOffset(); // 현재 시스템의 타임존 오프셋 (분 단위)
-
-    // // 한국 시간으로 변환
-    // const koreaTime = new Date(
-    //   currDate.getTime() + (koreaOffset - localOffset) * 60 * 1000
-    // );
 
     const updatedExpense = await updateExpense({
       name: title,
@@ -68,7 +61,7 @@ const ExpenseCard = ({ expense }: IProp) => {
             />
           </div>
           <div className="w-full py-4 flex justify-center items-center">
-            <span>{expense.date.toDateString()}</span>
+            <span>{toKoreaTime(expense.date).toDateString()}</span>
           </div>
           <div className="w-full py-4 flex justify-center items-center">
             <span>{expense.name}</span>
@@ -92,7 +85,7 @@ const ExpenseCard = ({ expense }: IProp) => {
               money: expense.money,
               title: expense.name,
               category: expense.category.name,
-              date: expense.date,
+              date: toKoreaTime(expense.date),
             }}
             deleteAction={deleteAction}
           />

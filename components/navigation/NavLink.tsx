@@ -1,17 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+
 import React from "react";
 
-const NavLink = ({ item }: { item: string }) => {
-  const view = useSearchParams().get("view");
+const NavLink = ({ item, href }: { item: string; href: string }) => {
+  const pathname = usePathname();
 
   return (
     <Link
-      href={`/?view=${item.toLowerCase()}`}
+      href={href}
       className={`text-center text-lg w-full py-3 ${
-        view === item.toLowerCase() || (!view && item === "Dashboard")
+        pathname === href
           ? "btn-bg font-bold text-white rounded-lg"
           : "font-medium"
       }`}
