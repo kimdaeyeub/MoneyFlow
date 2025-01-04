@@ -25,9 +25,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         </section>
         <Suspense
           fallback={
-            <div className="bg-gray-800 animate-pulse h-screen hidden lg:block xl:w-[300px] lg:w-[250px]">
-              Loading...
-            </div>
+            <div className="dark:bg-gray-800 bg-slate-200 animate-pulse h-screen hidden lg:block xl:w-[300px] lg:w-[250px]"></div>
           }
         >
           <RightSideBar />

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// TODO: 다크 모드일때 깃허브 버튼의 배경이 검은색이라 눈에 잘 안들어옴.
+
 const GithubBtn = () => {
   return (
     <Link

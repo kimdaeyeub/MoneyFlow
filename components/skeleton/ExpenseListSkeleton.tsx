@@ -26,16 +26,16 @@ const ExpenseListSkeleton = () => {
             className="w-full grid grid-cols-4 gap-1 text-sm text-gray-600 font-medium hover:bg-slate-50 bg-white dark:bg-transparent dark:text-gray-400 transition-colors duration-300 animate-pulse"
           >
             <div className="w-full py-4 flex justify-center items-center">
-              <div className="w-20 h-5 rounded-full bg-gray-800" />
+              <div className="w-20 h-5 rounded-full dark:bg-gray-800 bg-slate-200" />
             </div>
             <div className="w-full py-4 flex justify-center items-center">
-              <div className="w-14 h-4 bg-gray-800 rounded-full" />
+              <div className="w-14 h-4 dark:bg-gray-800 bg-slate-200 rounded-full" />
             </div>
             <div className="w-full py-4 flex justify-center items-center">
-              <div className="w-14 h-4 bg-gray-800 rounded-full" />
+              <div className="w-14 h-4 dark:bg-gray-800 bg-slate-200 rounded-full" />
             </div>
             <div className="w-full py-4 flex justify-center items-center">
-              <div className="w-14 h-4 bg-gray-800 rounded-full" />
+              <div className="w-14 h-4 dark:bg-gray-800 bg-slate-200 rounded-full" />
             </div>
           </div>
         ))}

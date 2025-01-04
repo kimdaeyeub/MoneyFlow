@@ -10,13 +10,7 @@
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -74,26 +68,23 @@ const ExpenseGraph = ({ data }: IProp) => {
           <CardTitle>
             <span>지출현황</span>
           </CardTitle>
-          <CardDescription>
-            Showing total visitors for the last 3 months
-          </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger
             className="w-[160px] rounded-lg sm:ml-auto"
             aria-label="Select a value"
           >
-            <SelectValue placeholder="Last 3 months" />
+            <SelectValue placeholder="지난 3개월" />
           </SelectTrigger>
           <SelectContent className="rounded-xl">
             <SelectItem value="90d" className="rounded-lg">
-              Last 3 months
+              지난 3개월
             </SelectItem>
             <SelectItem value="30d" className="rounded-lg">
-              Last 30 days
+              지난 한 달
             </SelectItem>
             <SelectItem value="7d" className="rounded-lg">
-              Last 7 days
+              지난 한 주
             </SelectItem>
           </SelectContent>
         </Select>
@@ -106,12 +97,7 @@ const ExpenseGraph = ({ data }: IProp) => {
           <AreaChart data={filteredData}>
             <defs>
               <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  // stopColor="var(--color-desktop)"
-                  stopColor="#FF7000"
-                  stopOpacity={0.8}
-                />
+                <stop offset="5%" stopColor="#FF7000" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="#FF7000" stopOpacity={0.5} />
               </linearGradient>
             </defs>

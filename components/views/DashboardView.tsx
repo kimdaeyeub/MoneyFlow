@@ -16,14 +16,12 @@ const DashboardView = async ({ page }: { page: string }) => {
   if (isNaN(Number(page))) redirect("/?page=1");
   const expenses = await getExpensesList(Number(page));
   const count = await userTotalExpensesCount();
-
   return (
     <>
       <h1 className="text-3xl font-bold xl:hidden block">Dashboard</h1>
       <ExpenseList expenses={expenses} />
-      {/* TODO: 배포시 url변경 */}
       {count !== null && count > 20 && (
-        <PaginationBtn count={count} take={20} url="http://localhost:3000/" />
+        <PaginationBtn count={count} take={20} url="/" />
       )}
     </>
   );

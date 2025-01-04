@@ -14,7 +14,6 @@ import { redirect } from "next/navigation";
 
 const DeleteCategoryBtn = ({ categoryId }: { categoryId: string }) => {
   const [open, setOpen] = useState(false);
-  // TODO: AlertDialog(shadcn)으로 변경
   const onClickDeleteBtn = async (categoryId: string) => {
     const category = await deleteCategory({ id: categoryId });
     if (category) {

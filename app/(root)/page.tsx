@@ -40,7 +40,7 @@ export default async function Home({
       <Suspense
         fallback={
           <div>
-            <div className="w-full h-96 rounded-xl bg-gray-800 animate-pulse" />
+            <div className="w-full h-96 rounded-xl dark:bg-gray-800 bg-slate-200 animate-pulse" />
             <ExpenseListSkeleton />
           </div>
         }

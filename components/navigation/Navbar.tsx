@@ -24,7 +24,6 @@ const getUserInfo = async (userId: string | undefined) => {
 
 const Navbar = async ({ userId }: { userId?: string }) => {
   const userInfo = await getUserInfo(userId);
-  // TODO: Dark모드일때 배경색이 transparent이다 보니 뒤에 있는 콘텐츠가 보임.
   return (
     <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
       <div className="flex gap-1 justify-center items-center">

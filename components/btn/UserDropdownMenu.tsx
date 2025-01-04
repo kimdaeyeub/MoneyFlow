@@ -17,7 +17,6 @@ interface IProp {
 }
 
 const UserDropdownMenu = async ({ avatar }: IProp) => {
-  // TODO: shadcn Dropdown menu로 변경
   const username = await getUserName();
 
   return (
@@ -37,30 +36,33 @@ const UserDropdownMenu = async ({ avatar }: IProp) => {
         <div className="lg:hidden block">
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/?view=today" className="py-2 font-medium">
-              Today
+            <Link href="/" className="py-2 font-medium w-full">
+              대시보드
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/?view=dashboard" className="py-2 font-medium">
-              Dashboard
+            <Link href="/today" className="py-2 font-medium w-full">
+              오늘의 지출
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/?view=this week" className="py-2 font-medium">
-              This week
+            <Link href="/this-week" className="py-2 font-medium w-full">
+              이번주 지출
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
         </div>
         <DropdownMenuLabel className="lg:hidden flex flex-col items-start gap-3 py-2">
           <h1 className="font-medium">카테고리</h1>
-          {/*  TODO: component화 하기 */}
+
           <Suspense
             fallback={
               <div className="w-full flex flex-wrap gap-2">
                 {[...new Array(6)].map((_, i) => (
-                  <div key={i} className="w-20 h-5 rounded-full bg-gray-800" />
+                  <div
+                    key={i}
+                    className="w-20 h-5 rounded-full dark:bg-gray-800 bg-slate-200"
+                  />
                 ))}
               </div>
             }

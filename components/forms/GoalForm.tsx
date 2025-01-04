@@ -44,7 +44,7 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
             <FormItem>
               <FormLabel className="text-nowrap">하루 목표</FormLabel>
               <FormControl>
-                <Input type="number" placeholder="shadcn" {...field} />
+                <Input type="number" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -57,7 +57,7 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
             <FormItem className="mt-3">
               <FormLabel className="text-nowrap">일주일 목표</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} type="number" />
+                <Input {...field} type="number" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,7 +70,7 @@ const GoalForm = ({ onSubmit, defaultValues }: IProp) => {
             <FormItem className="mt-3">
               <FormLabel className="text-nowrap">한달 목표</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} type="number" />
+                <Input {...field} type="number" />
               </FormControl>
               <FormMessage />
             </FormItem>

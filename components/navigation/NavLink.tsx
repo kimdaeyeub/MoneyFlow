@@ -14,7 +14,7 @@ const NavLink = ({ item, href }: { item: string; href: string }) => {
       className={`text-center text-lg w-full py-3 ${
         pathname === href
           ? "btn-bg font-bold text-white rounded-lg"
-          : "font-medium"
+          : "font-semibold"
       }`}
     >
       {item}
