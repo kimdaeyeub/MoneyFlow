@@ -45,7 +45,6 @@ export function ExpenseForm({
   mode,
   deleteAction,
 }: IProp) {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof expenseFormSchema>>({
     resolver: zodResolver(expenseFormSchema),
     defaultValues: defaultValues,
@@ -113,7 +112,6 @@ export function ExpenseForm({
                       )}
                     >
                       {field.value ? (
-                        // format(field.value, "PPP")
                         <span>{field.value.toDateString()}</span>
                       ) : (
                         <span></span>

@@ -6,16 +6,14 @@
 
 export const getWeekRange = () => {
   const today = new Date();
-  const dayOfWeek = today.getDay(); // 0 (일요일)부터 6 (토요일)까지의 값을 반환
+  const dayOfWeek = today.getDay();
   const startOfWeek = new Date(today);
   const endOfWeek = new Date(today);
 
-  // 월요일을 주의 시작으로 설정
   const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
   startOfWeek.setDate(today.getDate() + diffToMonday);
   startOfWeek.setHours(0, 0, 0, 0);
 
-  // 일요일을 주의 끝으로 설정
   const diffToSunday = dayOfWeek === 0 ? 0 : 7 - dayOfWeek;
   endOfWeek.setDate(today.getDate() + diffToSunday);
   endOfWeek.setHours(23, 59, 59, 999);

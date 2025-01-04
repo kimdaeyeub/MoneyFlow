@@ -79,7 +79,6 @@ const CircleProgressChart = ({
                     <tspan
                       x={viewBox.cx}
                       y={(viewBox.cy || 0) + 24}
-                      // className="fill-muted-foreground"
                       className="text-black dark:text-white fill-current"
                     >
                       {text}

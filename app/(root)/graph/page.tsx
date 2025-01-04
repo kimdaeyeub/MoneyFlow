@@ -1,5 +1,11 @@
 import GraphView from "@/components/views/GraphView";
+import { Metadata } from "next";
 import React, { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "MoneyFlow | 그래프",
+  description: "MoneyFlow 로그인 페이지입니다.",
+};
 
 const page = () => {
   return (

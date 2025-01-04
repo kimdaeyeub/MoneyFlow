@@ -33,7 +33,6 @@ const WeeklyView = async () => {
   };
 
   const sortDay = (expenses: Expense[] | null) => {
-    // 일주일동안의 지출 내역을 요일별로 정렬
     const data: {
       [key: string]: Expense[];
     } = {

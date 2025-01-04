@@ -8,24 +8,14 @@
 import ExpenseListSkeleton from "@/components/skeleton/ExpenseListSkeleton";
 import GoalCard from "@/components/ui/GoalCard";
 import DashboardView from "@/components/views/DashboardView";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-// export async function generateMetadata({
-//   searchParams,
-// }: {
-//   searchParams: Promise<{ view: string }>;
-// }) {
-//   const { view } = await searchParams;
-//   const page = view
-//     .split(" ")
-//     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-//     .join(" ");
-//   return {
-//     title: `MoneyFlow | ${page}`,
-//     description: "MoneyFlow 메인 콘텐츠 화면입니다.",
-//   };
-// }
+export const metadata: Metadata = {
+  title: "MoneyFlow | 대시보드",
+  description: "MoneyFlow 로그인 페이지입니다.",
+};
 
 export default async function Home({
   searchParams,

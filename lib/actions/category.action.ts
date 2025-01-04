@@ -49,7 +49,6 @@ export const getCategoriesList = async () => {
   return categories;
 };
 
-// 카테고리 이름, 해당 지출 목록을 불러오는 함수
 export const getCategoryById = async ({ id }: { id: string }) => {
   const category = await db.category.findUnique({
     where: { id },

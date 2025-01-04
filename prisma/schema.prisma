@@ -22,7 +22,6 @@ model User {
   goals      Goal[]
 }
 
-// 지출, 목표지출, 카테고리
 model Expense {
   id         String   @id @default(uuid())
   name       String

@@ -8,10 +8,20 @@ import DeleteCategoryBtn from "@/components/btn/DeleteCategoryBtn";
 import UpdateCategoryBtn from "@/components/btn/UpdateCategoryBtn";
 import ExpenseList from "@/components/expense/ExpenseList";
 import { getCategoryById } from "@/lib/actions/category.action";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const CategoryDetail = async ({ params }: { params: { id: string } }) => {
+export const metadata: Metadata = {
+  title: "MoneyFlow | 카테고리",
+  description: "MoneyFlow 로그인 페이지입니다.",
+};
+
+const CategoryDetail = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
   const category = await getCategoryById({ id });
   if (!category) redirect("/");

@@ -8,10 +8,6 @@ import React from "react";
 import CategoryCard from "../category/CategoryCard";
 import { getCategoriesList } from "@/lib/actions/category.action";
 
-// interface IProp {
-//   categories: Category[] | null;
-// }
-
 const RightSideBar = async () => {
   const categories: Category[] | null = await getCategoriesList();
 
