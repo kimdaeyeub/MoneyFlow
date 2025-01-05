@@ -7,6 +7,7 @@
 import React from "react";
 import ExpenseList from "../expense/ExpenseList";
 import { getThisWeekExpenses } from "@/lib/actions/expense.action";
+import { toKoreaTime } from "@/lib/formatKoreaDate";
 
 const WeeklyView = async () => {
   const expenses: Expense[] | null = await getThisWeekExpenses();
@@ -46,7 +47,7 @@ const WeeklyView = async () => {
     };
     if (!expenses) return data;
     expenses.forEach((expense) => {
-      const day = expense.date.getDay();
+      const day = toKoreaTime(expense.date).getDay();
       const dayOfWeek = getDayOfWeek(day);
 
       data[dayOfWeek].push(expense);
