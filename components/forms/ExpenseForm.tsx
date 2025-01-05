@@ -112,7 +112,7 @@ export function ExpenseForm({
                       )}
                     >
                       {field.value ? (
-                        <span>{field.value.toDateString()}</span>
+                        <span>{field.value.toLocaleDateString("ko-KR")}</span>
                       ) : (
                         <span></span>
                       )}

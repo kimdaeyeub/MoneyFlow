@@ -46,7 +46,12 @@ const AddExpenseBtn = () => {
         <DialogTitle className="text-xl font-bold">지출 추가</DialogTitle>
         <ExpenseForm
           onSubmit={onSubmit}
-          defaultValues={{ title: "", category: "", date: undefined, money: 0 }}
+          defaultValues={{
+            title: "",
+            category: "",
+            date: new Date(),
+            money: 0,
+          }}
           mode="ADD"
         />
       </DialogContent>
