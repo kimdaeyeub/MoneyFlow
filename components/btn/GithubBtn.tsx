@@ -6,6 +6,7 @@ const GithubBtn = () => {
   return (
     <Link
       href="/github/start"
+      prefetch={false}
       className="w-full bg-black dark:bg-white dark:text-black font-semibold text-white rounded-md py-4 flex justify-center items-center gap-2"
     >
       <Image
