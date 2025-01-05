@@ -92,29 +92,39 @@ export const getExpensesList = async (skip: number) => {
 
 export const getTodayExpenses = async () => {
   const today = toKoreaTime(new Date());
-  const startOfDay = new Date(
-    Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0)
+  const startOfDayKorea = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    0,
+    0,
+    0
   );
-  const endOfDay = new Date(
-    Date.UTC(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() + 1,
-      0,
-      0,
-      0
-    )
+  const endOfDayKorea = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+    23,
+    59,
+    59,
+    999
   );
+
+  const startOfDayUTC = new Date(
+    startOfDayKorea.getTime() - 9 * 60 * 60 * 1000
+  );
+  const endOfDayUTC = new Date(endOfDayKorea.getTime() - 9 * 60 * 60 * 1000);
 
   const session = await getSession();
   const userId = session.id;
   if (!userId) return null;
+
   const expenses = await db.expense.findMany({
     where: {
       userId,
       date: {
-        gte: startOfDay,
-        lt: endOfDay,
+        gte: startOfDayUTC,
+        lt: endOfDayUTC,
       },
     },
     orderBy: {
@@ -144,7 +154,7 @@ export const getThisWeekExpenses = async () => {
       userId,
       date: {
         gte: range.startOfWeek,
-        lt: range.endOfWeek,
+        lte: range.endOfWeek,
       },
     },
     orderBy: {
@@ -317,18 +327,23 @@ export const getThisMonthExpenses = async () => {
   const userId = session.id;
   if (!userId) return null;
 
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const lastDay = new Date(year, month + 1, 0).getDate();
-  const first = new Date(`${year}-${month}-01`);
-  const last = new Date(`${year}-${month}-${lastDay}`);
+  const today = toKoreaTime(new Date());
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const first = new Date(year, month, 1);
+  const last = new Date(today);
+
+  first.setHours(0, 0, 0, 0);
+
+  const startOfMonthUTC = new Date(first.getTime() - 9 * 60 * 60 * 1000);
+  const endOfMonthUTC = new Date(last.getTime() - 9 * 60 * 60 * 1000);
+
   const expenses = await db.expense.findMany({
     where: {
       userId,
       date: {
-        gte: first,
-        lt: last,
+        gte: startOfMonthUTC,
+        lt: endOfMonthUTC,
       },
     },
     orderBy: {
@@ -343,6 +358,7 @@ export const getThisMonthExpenses = async () => {
       },
     },
   });
+
   return expenses;
 };
 

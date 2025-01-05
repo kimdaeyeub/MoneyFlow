@@ -9,28 +9,17 @@ import { toKoreaTime } from "./formatKoreaDate";
 export const getWeekRange = () => {
   const today = toKoreaTime(new Date());
   const dayOfWeek = today.getDay();
-  const startOfWeek = new Date(
-    Date.UTC(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() + (dayOfWeek === 0 ? -6 : 1 - dayOfWeek),
-      0,
-      0,
-      0,
-      0
-    )
-  );
-  const endOfWeek = new Date(
-    Date.UTC(
-      today.getFullYear(),
-      today.getMonth(),
-      today.getDate() + (dayOfWeek === 0 ? 0 : 7 - dayOfWeek),
-      23,
-      59,
-      59,
-      999
-    )
-  );
+  const startOfWeek = new Date(today);
 
-  return { startOfWeek, endOfWeek };
+  const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  startOfWeek.setDate(today.getDate() + diffToMonday);
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const endOfWeek = new Date(today);
+  endOfWeek.setHours(23, 59, 59, 999);
+
+  const startOfWeekUTC = new Date(startOfWeek.getTime() - 9 * 60 * 60 * 1000);
+  const endOfWeekUTC = new Date(endOfWeek.getTime() - 9 * 60 * 60 * 1000);
+
+  return { startOfWeek: startOfWeekUTC, endOfWeek: endOfWeekUTC };
 };

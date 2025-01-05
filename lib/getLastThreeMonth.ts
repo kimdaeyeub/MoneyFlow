@@ -4,12 +4,20 @@
 생성 일자: 2024-12-23
  */
 
-export const getLastThreeMonth = () => {
-  const today = new Date();
-  today.setHours(23, 59, 59, 999);
+import { toKoreaTime } from "./formatKoreaDate";
 
+export const getLastThreeMonth = () => {
+  const today = toKoreaTime(new Date());
   const threeMonthAgo = new Date(today);
   threeMonthAgo.setMonth(today.getMonth() - 3);
 
-  return { today, threeMonthAgo };
+  today.setHours(23, 59, 59, 999);
+  threeMonthAgo.setHours(0, 0, 0, 0);
+
+  const startOfRangeUTC = new Date(
+    threeMonthAgo.getTime() - 9 * 60 * 60 * 1000
+  );
+  const endOfRangeUTC = new Date(today.getTime() - 9 * 60 * 60 * 1000);
+
+  return { today: endOfRangeUTC, threeMonthAgo: startOfRangeUTC };
 };
