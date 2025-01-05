@@ -93,14 +93,17 @@ export const getExpensesList = async (skip: number) => {
 export const getTodayExpenses = async () => {
   const today = toKoreaTime(new Date());
   const startOfDay = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate()
+    Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0)
   );
   const endOfDay = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 1
+    Date.UTC(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + 1,
+      0,
+      0,
+      0
+    )
   );
 
   const session = await getSession();
@@ -164,7 +167,9 @@ export const getExpensesForGraph = async () => {
   const session = await getSession();
   const userId = session.id;
   if (!userId) return null;
+
   const range = getLastThreeMonth();
+
   const expenses = await db.expense.findMany({
     where: {
       userId,

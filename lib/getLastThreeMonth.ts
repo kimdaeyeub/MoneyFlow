@@ -6,13 +6,10 @@
 
 export const getLastThreeMonth = () => {
   const today = new Date();
-
   today.setHours(23, 59, 59, 999);
-  const threeMonthAgo = new Date(
-    today.getFullYear(),
-    today.getMonth() - 3,
-    today.getDate()
-  );
+
+  const threeMonthAgo = new Date(today);
+  threeMonthAgo.setMonth(today.getMonth() - 3);
 
   return { today, threeMonthAgo };
 };
