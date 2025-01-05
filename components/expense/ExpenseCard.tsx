@@ -50,6 +50,13 @@ const ExpenseCard = ({ expense }: IProp) => {
     setOpen(false);
   };
 
+  const formatDate = (date: Date) => {
+    const koreanDate = toKoreaTime(date);
+    return `${koreanDate.getFullYear()}.${
+      koreanDate.getMonth() + 1
+    }.${koreanDate.getDate()}`;
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
@@ -61,9 +68,7 @@ const ExpenseCard = ({ expense }: IProp) => {
             />
           </div>
           <div className="w-full py-4 flex justify-center items-center">
-            <span>{`${toKoreaTime(expense.date).getFullYear()}.${toKoreaTime(
-              expense.date
-            ).getMonth()}.${toKoreaTime(expense.date).getDate()}`}</span>
+            <span>{formatDate(expense.date)}</span>
           </div>
           <div className="w-full py-4 flex justify-center items-center">
             <span>{expense.name}</span>

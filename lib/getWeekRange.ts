@@ -4,8 +4,10 @@
 생성 일자: 2024-12-22
  */
 
+import { toKoreaTime } from "./formatKoreaDate";
+
 export const getWeekRange = () => {
-  const today = new Date();
+  const today = toKoreaTime(new Date());
   const dayOfWeek = today.getDay();
   const startOfWeek = new Date(today);
   const endOfWeek = new Date(today);
