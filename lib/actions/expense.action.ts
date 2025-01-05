@@ -13,7 +13,6 @@ import { getLastThreeMonth } from "../getLastThreeMonth";
 import { getWeekRange } from "../getWeekRange";
 import getSession from "../session";
 import { defaultCategoryColor } from "../constants";
-import { toKoreaTime } from "../formatKoreaDate";
 
 export const addExpense = async ({
   title,
@@ -50,11 +49,15 @@ export const addExpense = async ({
       },
     });
   }
+
+  const kstDate = new Date(date.getTime() + 9 * 60 * 60 * 1000);
+  const isoString = kstDate.toISOString().slice(0, 19).replace("T", " ");
+
   const newExpense = await db.expense.create({
     data: {
       userId,
       name: title,
-      date,
+      date: isoString,
       money: expense,
       categoryId: categoryId.id,
     },
@@ -90,7 +93,7 @@ export const getExpensesList = async (skip: number) => {
 };
 
 export const getTodayExpenses = async () => {
-  const today = toKoreaTime(new Date());
+  const today = new Date();
   const startOfDay = new Date(
     today.getFullYear(),
     today.getMonth(),
