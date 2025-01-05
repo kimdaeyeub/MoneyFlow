@@ -61,7 +61,9 @@ const ExpenseCard = ({ expense }: IProp) => {
             />
           </div>
           <div className="w-full py-4 flex justify-center items-center">
-            <span>{toKoreaTime(expense.date).toLocaleDateString("ko-KR")}</span>
+            <span>{`${toKoreaTime(expense.date).getFullYear()}.${toKoreaTime(
+              expense.date
+            ).getMonth()}.${toKoreaTime(expense.date).getDate()}`}</span>
           </div>
           <div className="w-full py-4 flex justify-center items-center">
             <span>{expense.name}</span>
