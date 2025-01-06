@@ -14,7 +14,7 @@ import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "MoneyFlow | 대시보드",
-  description: "MoneyFlow 로그인 페이지입니다.",
+  description: "MoneyFlow 대시보드 페이지입니다.",
 };
 
 export default async function Home({

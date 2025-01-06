@@ -20,6 +20,29 @@ export const metadata: Metadata = {
   verification: {
     google: "cwiFwSNi7XWYd2f2LAHNn4Klwf17ebD_55VRkgtU9Ew",
   },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: "https://getmoneyflow.vercel.app",
+    siteName: "MoneyFlow",
+    title: "MoneyFlow - 돈 관리의 새로운 패러다임",
+    description: "쉽고 체계적인 돈 관리 솔루션, MoneyFlow에서 만나보세요.",
+    images: [
+      {
+        url: "https://getmoneyflow.vercel.app/images/preview.png",
+        width: 1200,
+        height: 630,
+        alt: "MoneyFlow Preview Image",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://getmoneyflow.vercel.app",
+  },
 };
 
 export default async function RootLayout({
