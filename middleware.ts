@@ -25,7 +25,6 @@ export async function middleware(request: NextRequest) {
     }
   }
 }
-
 export const config = {
-  matcher: ["/((?!_next|icons|images|favicon.ico).*)"],
+  matcher: ["/((?!_next|icons|images|favicon.ico|sitemap.xml).*)"],
 };

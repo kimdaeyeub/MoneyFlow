@@ -14,7 +14,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "MoneyFlow | 카테고리",
-  description: "MoneyFlow 로그인 페이지입니다.",
+  description: "MoneyFlow 카테고리 페이지입니다.",
 };
 
 const CategoryDetail = async ({
