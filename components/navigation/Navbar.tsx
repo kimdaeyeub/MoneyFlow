@@ -24,6 +24,7 @@ const getUserInfo = async (userId: string | undefined) => {
 
 const Navbar = async ({ userId }: { userId?: string }) => {
   const userInfo = await getUserInfo(userId);
+  console.log(userInfo, "userInfo");
   return (
     <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
       <div className="flex gap-1 justify-center items-center">
