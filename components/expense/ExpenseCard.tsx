@@ -74,7 +74,7 @@ const ExpenseCard = ({ expense }: IProp) => {
             <span>{expense.name}</span>
           </div>
           <div className="w-full py-4 flex justify-center items-center">
-            <span>{expense.money}</span>
+            <span>{expense.money.toLocaleString("ko-KR")}</span>
           </div>
         </div>
       </DialogTrigger>
