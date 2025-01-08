@@ -14,8 +14,7 @@ import { redirect } from "next/navigation";
 
 const DashboardView = async ({ page }: { page: string }) => {
   if (isNaN(Number(page))) redirect("/?page=1");
-  const expenses = await getExpensesList(Number(page));
-  if (expenses?.length === 0) redirect(`/?page=${Number(page) - 1}`);
+  const expenses = await getExpensesList(Number(page ? page : 1));
   const count = await userTotalExpensesCount();
   return (
     <>
