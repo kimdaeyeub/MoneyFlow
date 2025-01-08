@@ -13,7 +13,7 @@ import PaginationBtn from "../ui/PaginationBtn";
 import { redirect } from "next/navigation";
 
 const DashboardView = async ({ page }: { page: string }) => {
-  if (isNaN(Number(page))) redirect("/?page=1");
+  if (isNaN(Number(page)) || Number(page) < 1) redirect("/?page=1");
   const expenses = await getExpensesList(Number(page ? page : 1));
   if (expenses?.length === 0 && Number(page) > 1)
     redirect(`/?page=${Number(page) - 1}`);
