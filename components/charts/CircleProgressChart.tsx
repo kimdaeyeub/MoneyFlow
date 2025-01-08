@@ -72,7 +72,11 @@ const CircleProgressChart = ({
                     <tspan
                       x={viewBox.cx}
                       y={viewBox.cy}
-                      className="fill-current text-black dark:text-white text-2xl font-bold"
+                      className={`fill-current ${
+                        goal < value
+                          ? "text-[#E63A46]"
+                          : "text-black dark:text-white"
+                      } text-2xl font-bold`}
                     >
                       {value.toLocaleString("ko-KR")}
                     </tspan>
