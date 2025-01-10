@@ -5,7 +5,7 @@ module.exports = {
   sitemapSize: 7000,
   changefreq: "daily",
   priority: 0.7,
-  exclude: ["/sign-in", "/create-account", "/github/*"],
+  exclude: ["/sign-in", "/create-account", "/github/start", "/github/complete"],
   transform: async (config, path) => {
     const publicPaths = [
       "/sign-in",
@@ -14,13 +14,15 @@ module.exports = {
       "/github/complete",
     ];
 
-    const privatePaths = [
-      "/",
-      "/today",
-      "/graph",
-      "/this-week",
-      "/categories/[id]",
-    ];
+    const privatePaths = ["/", "/today", "/graph", "/this-week"];
+
+    if (path.startsWith("/categories/")) {
+      return {
+        loc: path,
+        priority: config.priority,
+        changefreq: config.changefreq,
+      };
+    }
 
     if (publicPaths.includes(path)) {
       return {
@@ -53,7 +55,7 @@ module.exports = {
       },
       {
         userAgent: "*",
-        disallow: ["/", "/today", "/graph", "/this-week", "/categories"],
+        disallow: ["/", "/today", "/graph", "/this-week", "/categories/*"],
       },
     ],
   },
