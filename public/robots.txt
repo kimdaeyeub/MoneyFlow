@@ -1,6 +1,17 @@
 # *
 User-agent: *
-Allow: /
+Allow: /sign-in
+Allow: /create-account
+Allow: /github/start
+Allow: /github/complete
+
+# *
+User-agent: *
+Disallow: /
+Disallow: /today
+Disallow: /graph
+Disallow: /this-week
+Disallow: /categories
 
 # Host
 Host: https://getmoneyflow.vercel.app
