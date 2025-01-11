@@ -20,12 +20,13 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
             Money<span className="text-[#FF7000]">Flow</span>
           </p>
         </div>
-        <Link
+        {/* TODO: 배포 전에는 꼭 넣어서 배포할 것 */}
+        {/* <Link
           className="btn-bg px-4 py-2 text-white rounded-lg font-bold font-noto-sans"
           href={"/sign-in"}
         >
           로그인
-        </Link>
+        </Link> */}
       </nav>
       <div className="flex">
         <LeftSideBar sample />
