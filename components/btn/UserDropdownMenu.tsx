@@ -36,7 +36,7 @@ const UserDropdownMenu = async ({ avatar }: IProp) => {
         <div className="lg:hidden block">
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/" className="py-2 font-medium w-full">
+            <Link href="/dashboard" className="py-2 font-medium w-full">
               대시보드
             </Link>
           </DropdownMenuItem>
@@ -48,6 +48,11 @@ const UserDropdownMenu = async ({ avatar }: IProp) => {
           <DropdownMenuItem>
             <Link href="/this-week" className="py-2 font-medium w-full">
               이번주 지출
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/expense/add" className="py-2 font-medium w-full">
+              지출 내역 추가
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />

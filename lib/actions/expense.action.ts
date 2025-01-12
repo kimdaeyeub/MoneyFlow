@@ -309,8 +309,7 @@ export const updateExpense = async ({
       categoryId: newCategoryId?.id,
     },
   });
-
-  if (lastCategory?._count.expenses === 0) {
+  if (lastCategory?._count.expenses === 1 && lastCategory.name !== category) {
     await db.category.delete({
       where: {
         id: lastCategory.id,

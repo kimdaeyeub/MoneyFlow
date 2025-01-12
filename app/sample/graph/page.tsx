@@ -1,5 +1,11 @@
 import ExpenseGraph from "@/components/charts/ExpenseGraph";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "그래프",
+  description: "MoneyFlow 그래프뷰 페이지입니다.",
+};
 
 const page = () => {
   interface IProp {

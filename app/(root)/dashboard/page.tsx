@@ -13,7 +13,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "MoneyFlow | 대시보드",
+  title: "대시보드",
   description: "MoneyFlow 대시보드 페이지입니다.",
 };
 

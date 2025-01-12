@@ -1,6 +1,12 @@
 import SampleExpenseList from "@/components/sample/SampleExpenseList";
 import SampleGoalCard from "@/components/sample/SampleGoalCard";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "대시보드",
+  description: "MoneyFlow 대시보드 페이지입니다.",
+};
 
 const data = [
   {

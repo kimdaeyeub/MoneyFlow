@@ -1,4 +1,5 @@
 import SampleExpenseList from "@/components/sample/SampleExpenseList";
+import { Metadata } from "next";
 import React from "react";
 
 const data = [
@@ -51,6 +52,11 @@ const data = [
     name: "식료품 구입",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "오늘 지출",
+  description: "MoneyFlow 오늘의 지출 내역 페이지입니다.",
+};
 
 const page = () => {
   return (

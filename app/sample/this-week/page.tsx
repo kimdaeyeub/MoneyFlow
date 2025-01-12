@@ -1,6 +1,7 @@
 import SampleExpenseList, {
   IData,
 } from "@/components/sample/SampleExpenseList";
+import { Metadata } from "next";
 import React from "react";
 
 interface WeeklyData {
@@ -150,13 +151,18 @@ const data: WeeklyData = {
   ],
 };
 
+export const metadata: Metadata = {
+  title: "이번주 지출",
+  description: "MoneyFlow 이번주 지출 내역 페이지입니다.",
+};
+
 const page = () => {
   return (
     <section>
       <ul className="flex flex-col gap-8 pb-14">
         {Object.keys(data).map((key) => (
           <li key={key} className="flex flex-col justify-start items-start">
-            <h1 className="font-bold text-2xl ml-3">{key}</h1>
+            <h1 className="font-bold text-2xl ml-3">{key}요일</h1>
             <SampleExpenseList data={data[key]} />
           </li>
         ))}

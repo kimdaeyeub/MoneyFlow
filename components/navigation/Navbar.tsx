@@ -29,7 +29,7 @@ const getUserInfo = async () => {
 const Navbar = async () => {
   const userInfo = await getUserInfo();
   return (
-    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
+    <nav className="w-full sm:px-7 px-4 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
       <div className="flex gap-1 justify-center items-center">
         <Image
           src="/icons/logo.png"

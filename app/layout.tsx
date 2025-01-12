@@ -11,7 +11,7 @@ const notoSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MoneyFlow",
+  title: { template: "MoneyFlow | %s", default: "MoneyFlow" },
   description: "돈 관리를 체계적이고, 시각적으로",
   verification: {
     google: "cwiFwSNi7XWYd2f2LAHNn4Klwf17ebD_55VRkgtU9Ew",

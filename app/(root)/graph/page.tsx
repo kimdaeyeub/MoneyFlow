@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import React, { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "MoneyFlow | 그래프",
+  title: "그래프",
   description: "MoneyFlow 그래프뷰 페이지입니다.",
 };
 
