@@ -17,7 +17,7 @@ const LeftSideBar = async ({ sample }: { sample?: boolean }) => {
   const session = await getSession();
   const userId = session.id;
   return (
-    <section className="hidden sticky left-0 top-0 h-screen border-r dark:border-gray-800 shadow-sm pt-32 px-7 lg:flex flex-col justify-between items-center md:w-[250px] lg:w-[300px] pb-10">
+    <section className="hidden sticky left-0 top-0 h-screen border-r dark:border-gray-800 shadow-sm pt-28 px-7 lg:flex flex-col justify-between items-center md:w-[250px] lg:w-[300px] pb-10">
       <div className="flex flex-col justify-start items-center gap-6 w-full">
         {lists.map((item, index) => (
           <NavLink
@@ -28,7 +28,7 @@ const LeftSideBar = async ({ sample }: { sample?: boolean }) => {
         ))}
       </div>
       {/* TODO:샘플모드에서는 추가 버튼이 동작하면 안된다 대체품 필요 */}
-      {userId && <AddExpenseBtn />}
+      {!sample && userId && <AddExpenseBtn />}
     </section>
   );
 };

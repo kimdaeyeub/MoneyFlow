@@ -1,5 +1,4 @@
 import React from "react";
-import CategoryCard from "../category/CategoryCard";
 
 const SampleRightSideBar = async () => {
   const data = [
@@ -16,16 +15,22 @@ const SampleRightSideBar = async () => {
   ];
 
   return (
-    <nav className="hidden lg:block sticky right-0 top-0 h-screen border-l dark:border-gray-800 shadow-sm pt-32 px-7 xl:w-[300px] lg:w-[250px]">
+    <nav className="hidden lg:block sticky right-0 top-0 h-screen border-l dark:border-gray-800 shadow-sm pt-28 px-7 xl:w-[300px] lg:w-[250px]">
       <h1 className="font-bold text-xl">카테고리</h1>
       <ul className="flex flex-col justify-start items-start gap-5 mt-7">
-        {data.map((category) => (
-          <CategoryCard
-            key={category.id}
-            tag={category.tag}
-            count={category.count}
-            id={category.tag}
-          />
+        {data.map((category, index) => (
+          <li
+            key={index}
+            className="lg:w-full w-fit flex justify-between items-center"
+          >
+            <div className="text-[#858ead] cursor-pointer bg-[#f4f6f8] dark:bg-gray-800 border dark:border-gray-700 px-5 py-1.5 rounded-md font-medium text-sm">
+              {category.tag}
+            </div>
+
+            <span className="text-[#3f4354] font-semibold text-sm hidden lg:block">
+              {category.count}
+            </span>
+          </li>
         ))}
       </ul>
     </nav>

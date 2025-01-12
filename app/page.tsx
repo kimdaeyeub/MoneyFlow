@@ -8,13 +8,61 @@ export const metadata: Metadata = {
     "가계부를 체계적이고 시각적으로 관리하세요. 예산 관리, 지출 분석, 통계 대시보드 기능으로 최적화된 돈 관리 솔루션을 지금 만나보세요!",
 };
 
+interface IFeature {
+  title: string;
+  description: string;
+}
+
+const features: IFeature[] = [
+  {
+    title: "지출 상한 목표 설정",
+    description:
+      "소비 한도를 설정하여 예산 내에서 관리할 수 있도록 도와줍니다.",
+  },
+  {
+    title: "진행 상황 원형 프로그래스바",
+    description:
+      "목표 상한액까지의 진행 상황을 한눈에 확인할 수 있는 시각적 도구입니다.",
+  },
+  {
+    title: "카테고리별 지출 관리",
+    description:
+      "각 소비 항목을 카테고리별로 구분하여 세부적인 지출을 추가하고 관리할 수 있습니다.",
+  },
+  {
+    title: "세분화된 지출 내역 분석",
+    description:
+      "카테고리별로 지출 내역을 분석하여 더 명확한 소비 패턴을 확인할 수 있습니다.",
+  },
+  {
+    title: "지출 추이 시각화 그래프",
+    description:
+      "지출 변화를 그래프로 시각적으로 표현해, 시간에 따른 소비 패턴을 쉽게 파악할 수 있습니다.",
+  },
+  {
+    title: "오늘의 지출 현황",
+    description:
+      "오늘까지의 총 지출액을 확인하고, 일일 예산을 체크할 수 있습니다.",
+  },
+  {
+    title: "주간 지출 분석",
+    description:
+      "이번 주의 지출을 요일별로 파악하여, 주간 소비 패턴을 분석할 수 있습니다.",
+  },
+  {
+    title: "카테고리 색상 커스터마이징",
+    description:
+      "각 카테고리의 색상을 사용자가 직접 설정하여, 지출 항목을 더 쉽게 구별하고 눈에 띄게 할 수 있습니다.",
+  },
+];
+
 // 랜딩 페이지
 const page = () => {
   return (
-    <div>
+    <>
       {/* 랜딩 페이지 상단바 */}
       <nav className="w-full px-16 py-3 fixed bg-[#121212] bg-opacity-90 z-50 flex justify-between items-center">
-        <div className="flex gap-1 justify-center items-center">
+        <Link href="/" className="flex gap-1 justify-center items-center">
           <Image
             src="/icons/logo.png"
             width={40}
@@ -25,7 +73,7 @@ const page = () => {
           <p className="text-2xl font-bold text-white">
             Money<span className="text-[#FF7000]">Flow</span>
           </p>
-        </div>
+        </Link>
         <div className="text-gray-500 flex space-x-6 font-medium text-xl">
           <Link href={"/#home"}>Home</Link>
           <Link href={"/#feature"}>Feature</Link>
@@ -51,9 +99,12 @@ const page = () => {
         <p className="text-xl font-medium font-noto-sans">
           예산 설정, 지출 추적, 그리고 재정 목표 달성을 위한 완벽한 도구.
         </p>
-        <button className="mt-20 px-8 py-3.5 font-bold font-noto-sans text-xl bg-[#FF7000] rounded-full">
+        <Link
+          href="/sign-in"
+          className="mt-20 px-8 py-3.5 font-bold font-noto-sans text-xl bg-[#FF7000] rounded-full"
+        >
           지금바로 시작하기
-        </button>
+        </Link>
       </section>
       <section className="pt-32 px-40">
         <Image
@@ -89,8 +140,89 @@ const page = () => {
           둘러보기
         </Link>
       </section>
-      <section id="feature" className="min-h-screen bg-black"></section>
-    </div>
+      <section className="px-20 grid grid-cols-2 w-full pt-52 pb-32 gap-14 bg-black">
+        <Image
+          src="/images/goal.png"
+          alt="goal_landing"
+          width={500}
+          height={500}
+          className="w-full"
+        />
+        <div className="flex flex-col justify-center gap-6 items-start">
+          <div className="text-2xl font-bold font-noto-sans text-slate-200">
+            <h1>손쉬운 목표 달성,</h1>
+            <h1>똑똑한 소비 관리</h1>
+          </div>
+          <p className="text-lg font-medium font-noto-sans text-gray-500">
+            하루, 1주일, 1달 단위로 지출 목표를 설정하고 실시간으로 진행 상황을
+            확인하세요. 직관적인 시각적 도구로 더 나은 소비 습관을 만들어
+            보세요.
+          </p>
+        </div>
+      </section>
+      <section className="px-20 grid grid-cols-2 w-full pb-52 pt-20 gap-10 bg-black">
+        <div className="flex flex-col justify-center gap-6 items-start">
+          <div className="text-2xl font-bold font-noto-sans text-slate-200">
+            <h1>한눈에 보는 지출 데이터,</h1>
+            <h1>시각적인 소비 관리</h1>
+          </div>
+          <p className="text-lg font-medium font-noto-sans text-gray-500">
+            3개월, 1달, 1주일 단위로 제공되는 그래프를 통해 지출 데이터를
+            시각적으로 확인하세요. 길게는 3개월, 짧게는 1주일의 흐름을 한눈에
+            파악하며 소비 패턴을 분석하고, 더 현명한 재정 결정을 내릴 수
+            있습니다.
+          </p>
+        </div>
+        <Image
+          src="/images/graph.png"
+          alt="graph_landing"
+          width={500}
+          height={500}
+          className="w-full"
+        />
+      </section>
+      <section
+        id="feature"
+        className="flex flex-col justify-center items-center pt-40 pb-32"
+      >
+        <h1 className="text-3xl font-bold font-noto-sans text-slate-200">
+          Features
+        </h1>
+        <div className="max-w-4xl mt-20 mx-auto grid grid-cols-2 gap-20">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-5 justify-start items-start w-full"
+            >
+              <div className="flex gap-2 items-center">
+                <svg
+                  data-slot="icon"
+                  fill="none"
+                  strokeWidth="1.8"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  className="size-5 text-[#FF7000]"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 12.75 6 6 9-13.5"
+                  ></path>
+                </svg>
+                <h2 className="text-xl font-bold font-noto-sans text-slate-200">
+                  {feature.title}
+                </h2>
+              </div>
+              <p className="font-medium font-noto-sans text-gray-500">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
