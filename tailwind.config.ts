@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "noto-sans": ["var(--font-noto-sans)"],
+      },
       backgroundImage: {
         "auth-dark": "url('/images/auth-dark.png')",
         "auth-light": "url('/images/auth-light.png')",

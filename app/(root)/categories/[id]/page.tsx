@@ -8,13 +8,27 @@ import DeleteCategoryBtn from "@/components/btn/DeleteCategoryBtn";
 import UpdateCategoryBtn from "@/components/btn/UpdateCategoryBtn";
 import ExpenseList from "@/components/expense/ExpenseList";
 import { getCategoryById } from "@/lib/actions/category.action";
+import db from "@/lib/db";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "MoneyFlow | 카테고리",
-  description: "MoneyFlow 카테고리 페이지입니다.",
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> => {
+  const { id } = await params;
+  const getCategoryName = await db.category.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      name: true,
+    },
+  });
+
+  return { title: getCategoryName!.name };
 };
 
 const CategoryDetail = async ({
@@ -24,7 +38,7 @@ const CategoryDetail = async ({
 }) => {
   const { id } = await params;
   const category = await getCategoryById({ id });
-  if (!category) redirect("/");
+  if (!category) redirect("/dashboard");
   return (
     <>
       <div className="w-full flex justify-between items-center">

@@ -8,19 +8,16 @@
 import LeftSideBar from "@/components/navigation/LeftSideBar";
 import Navbar from "@/components/navigation/Navbar";
 import RightSideBar from "@/components/navigation/RightSideBar";
-import getSession from "@/lib/session";
 import React, { Suspense } from "react";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await getSession();
-
   return (
     <main className="relative w-full">
-      <Navbar userId={session.id} />
+      <Navbar />
       <div className="flex">
         <LeftSideBar />
 
-        <section className="flex min-h-screen flex-1 flex-col px-4 sm:px-8 pb-6 pt-36 max-md:pb-14">
+        <section className="flex min-h-screen flex-1 flex-col px-4 sm:px-8 pb-6 pt-24 max-md:pb-14">
           <div className="mx-auto w-full">{children}</div>
         </section>
         <Suspense

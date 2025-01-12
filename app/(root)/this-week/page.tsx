@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import React, { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "MoneyFlow | 이번주 지출",
+  title: "이번주 지출",
   description: "MoneyFlow 이번주 지출 내역 페이지입니다.",
 };
 

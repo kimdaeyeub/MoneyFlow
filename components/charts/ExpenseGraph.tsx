@@ -63,12 +63,10 @@ const ExpenseGraph = ({ data }: IProp) => {
 
   return (
     <Card className="dark:bg-transparent">
-      <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-        <div className="grid flex-1 gap-1 text-center sm:text-left">
-          <CardTitle>
-            <span>지출현황</span>
-          </CardTitle>
-        </div>
+      <CardHeader className="flex-row justify-between items-center gap-2 space-y-0 border-b py-5 ">
+        <CardTitle>
+          <span>지출현황</span>
+        </CardTitle>
         <Select value={timeRange} onValueChange={setTimeRange}>
           <SelectTrigger
             className="w-[160px] rounded-lg sm:ml-auto"

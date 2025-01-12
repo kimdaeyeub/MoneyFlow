@@ -11,8 +11,12 @@ import Link from "next/link";
 import db from "@/lib/db";
 import Image from "next/image";
 import UserDropdownMenu from "../btn/UserDropdownMenu";
+import getSession from "@/lib/session";
 
-const getUserInfo = async (userId: string | undefined) => {
+const getUserInfo = async () => {
+  const session = await getSession();
+  const userId = session.id;
+
   if (!userId) return null;
   const user = await db.user.findUnique({
     where: {
@@ -22,11 +26,10 @@ const getUserInfo = async (userId: string | undefined) => {
   return user;
 };
 
-const Navbar = async ({ userId }: { userId?: string }) => {
-  const userInfo = await getUserInfo(userId);
-  console.log(userInfo, "userInfo");
+const Navbar = async () => {
+  const userInfo = await getUserInfo();
   return (
-    <nav className="w-full px-7 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
+    <nav className="w-full sm:px-7 px-4 py-3 fixed shadow-md z-50 bg-white dark:bg-[#121212] dark:border border-gray-800 flex justify-between items-center">
       <div className="flex gap-1 justify-center items-center">
         <Image
           src="/icons/logo.png"
@@ -41,7 +44,7 @@ const Navbar = async ({ userId }: { userId?: string }) => {
       </div>
       <div className="flex gap-4 items-center">
         <Theme />
-        {userId ? (
+        {userInfo?.id ? (
           <UserDropdownMenu avatar={userInfo?.avatar} />
         ) : (
           <Link href="/sign-in">Login</Link>

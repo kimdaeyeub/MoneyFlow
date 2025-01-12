@@ -18,7 +18,7 @@ const DeleteCategoryBtn = ({ categoryId }: { categoryId: string }) => {
     const category = await deleteCategory({ id: categoryId });
     if (category) {
       setOpen(false);
-      redirect("/");
+      redirect("/dashboard");
     }
   };
   return (

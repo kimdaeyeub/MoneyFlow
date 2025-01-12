@@ -22,7 +22,7 @@ const PaginationBtn = ({ count, take, url }: IPaginationBtnProps) => {
   useEffect(() => {
     const current = Number(searchParams.get("page"));
     if (isNaN(current)) {
-      redirect("/");
+      redirect("/dashboard");
     } else {
       setPage(current);
     }

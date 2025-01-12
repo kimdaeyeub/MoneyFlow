@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import localFont from "next/font/local";
+
+const notoSans = localFont({
+  src: "./fonts/NotoSansVF.ttf",
+  variable: "--font-noto-sans",
+  weight: "100 200 300 400 500 600 700 800 900",
+});
 
 export const metadata: Metadata = {
-  title: "MoneyFlow",
+  title: { template: "MoneyFlow | %s", default: "MoneyFlow" },
   description: "돈 관리를 체계적이고, 시각적으로",
   verification: {
     google: "cwiFwSNi7XWYd2f2LAHNn4Klwf17ebD_55VRkgtU9Ew",
@@ -40,8 +47,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko-kr" suppressHydrationWarning>
-      <body className="antialiased scrollbar-hide">
+    <html className="scroll-smooth" lang="ko-kr" suppressHydrationWarning>
+      <body className={`${notoSans.variable} antialiased scrollbar-hide`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "MoneyFlow | 로그인",
+  title: "로그인",
   description: "MoneyFlow 로그인 페이지입니다.",
 };
 

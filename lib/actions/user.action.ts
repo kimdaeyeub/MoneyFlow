@@ -90,7 +90,7 @@ export const createAccount = async (prevState: unknown, formData: FormData) => {
     const session = await getSession();
     session.id = newUser.id;
     await session.save();
-    redirect("/");
+    redirect("/dashboard");
   }
 };
 
@@ -149,7 +149,7 @@ export const login = async (prevState: unknown, formData: FormData) => {
       const session = await getSession();
       session.id = user!.id;
       await session.save();
-      redirect("/");
+      redirect("/dashboard");
     } else {
       return {
         fieldErrors: {
