@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "MoneyFlow | 홈",
+  title: "MoneyFlow",
   description:
     "가계부를 체계적이고 시각적으로 관리하세요. 예산 관리, 지출 분석, 통계 대시보드 기능으로 최적화된 돈 관리 솔루션을 지금 만나보세요!",
 };
