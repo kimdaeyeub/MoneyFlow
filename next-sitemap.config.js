@@ -1,62 +1,19 @@
-/** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://getmoneyflow.vercel.app",
   generateRobotsTxt: true,
-  sitemapSize: 7000,
-  changefreq: "daily",
-  priority: 0.7,
-  exclude: ["/sign-in", "/create-account", "/github/start", "/github/complete"],
-  transform: async (config, path) => {
-    const publicPaths = [
-      "/sign-in",
-      "/create-account",
-      "/github/start",
-      "/github/complete",
-    ];
-
-    const privatePaths = ["/", "/today", "/graph", "/this-week"];
-
-    if (path.startsWith("/categories/")) {
-      return {
-        loc: path,
-        priority: config.priority,
-        changefreq: config.changefreq,
-      };
-    }
-
-    if (publicPaths.includes(path)) {
-      return {
-        loc: path,
-        priority: 1.0,
-        changefreq: "daily",
-      };
-    }
-
-    if (privatePaths.includes(path)) {
-      return {
-        loc: path,
-        priority: config.priority,
-        changefreq: config.changefreq,
-      };
-    }
-
-    return null;
-  },
   robotsTxtOptions: {
-    policies: [
+    additionalSitemaps: ["https://getmoneyflow.vercel.app/sitemap.xml"],
+    rules: [
       {
         userAgent: "*",
-        allow: [
-          "/sign-in",
-          "/create-account",
-          "/github/start",
-          "/github/complete",
-        ],
-      },
-      {
-        userAgent: "*",
-        disallow: ["/", "/today", "/graph", "/this-week", "/categories/*"],
+        allow: "/",
+        disallow: ["/dashboard", "/graph", "/today", "/this-week"],
       },
     ],
   },
+  sitemapSize: 7000,
+  changefreq: "weekly",
+  priority: 0.7,
+  exclude: ["/dashboard", "/graph", "/today", "/this-week"],
+  generate: ["sitemap.xml"],
 };
