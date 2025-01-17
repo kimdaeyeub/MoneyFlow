@@ -1,9 +1,8 @@
-# *
 User-agent: *
-Allow: /
+Disallow: /dashboard
+Disallow: /graph
+Disallow: /today
+Disallow: /this-week
+Disallow: /categories/
 
-# Host
-Host: https://getmoneyflow.vercel.app
-
-# Sitemaps
 Sitemap: https://getmoneyflow.vercel.app/sitemap.xml

@@ -1,8 +1,7 @@
 module.exports = {
   siteUrl: "https://getmoneyflow.vercel.app",
-  generateRobotsTxt: true,
+  generateRobotsTxt: true, // robots.txt 파일 생성
   robotsTxtOptions: {
-    additionalSitemaps: ["https://getmoneyflow.vercel.app/sitemap.xml"],
     rules: [
       {
         userAgent: "*",
@@ -11,9 +10,8 @@ module.exports = {
       },
     ],
   },
-  sitemapSize: 7000,
+  sitemapSize: 7000, // 7000개 이상의 URL이 있을 경우 자동으로 분할
   changefreq: "weekly",
   priority: 0.7,
-  exclude: ["/dashboard", "/graph", "/today", "/this-week"],
-  generate: ["sitemap.xml"],
+  exclude: ["/dashboard", "/graph", "/today", "/this-week"], // 제외할 페이지
 };
