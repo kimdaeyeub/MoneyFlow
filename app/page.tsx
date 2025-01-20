@@ -83,12 +83,14 @@ const page = () => {
         id="home"
         className="py-56 px-10 bg-auth-dark bg-cover bg-center text-white flex justify-center items-center flex-col"
       >
-        <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 sm:text-4xl text-3xl font-bold mb-16">
+        <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 text-4xl font-bold mb-16">
           <h1>
             Money<span className="text-[#FF7000]">Flow</span>
           </h1>
           <span className="font-medium hidden md:block">|</span>
-          <h1 className="font-semibold">당신의 효율적인 돈 관리 파트너</h1>
+          <h1 className="font-semibold hidden md:block">
+            당신의 효율적인 돈 관리 파트너
+          </h1>
         </div>
         <p className="sm:text-xl text-lg font-medium text-gray-500">
           &quot;효율적인 돈 관리의 시작.&quot;
