@@ -13,7 +13,7 @@ export default {
         "noto-sans": ["var(--font-noto-sans)"],
       },
       backgroundImage: {
-        "auth-dark": "url('/images/auth-dark.png')",
+        "auth-dark": "url('/images/auth-dark.webp')",
         "auth-light": "url('/images/auth-light.png')",
       },
       colors: {
