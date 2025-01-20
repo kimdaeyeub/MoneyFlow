@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 const notoSans = localFont({
   src: "./fonts/NotoSansVF.ttf",
@@ -70,6 +71,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics />
           <SpeedInsights />
         </ThemeProvider>
       </body>
