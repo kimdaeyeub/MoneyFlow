@@ -62,13 +62,7 @@ const page = () => {
     <>
       <nav className="w-full sm:px-16 px-5 py-3 fixed bg-[#121212] bg-opacity-90 z-50 flex justify-between items-center">
         <Link href="/" className="flex gap-1 justify-center items-center">
-          <Image
-            src="/icons/logo.png"
-            width={40}
-            height={40}
-            style={{ width: "40px", height: "auto" }}
-            alt="logo"
-          />
+          <Image src="/icons/logo.png" width={40} height={40} alt="logo" />
           <p className="text-2xl font-bold text-white">
             Money<span className="text-[#FF7000]">Flow</span>
           </p>
@@ -81,29 +75,37 @@ const page = () => {
       {/* 섹션1 */}
       <section
         id="home"
-        className="py-56 px-10 bg-auth-dark bg-cover bg-center text-white flex justify-center items-center flex-col"
+        className="py-56 px-10 text-white flex justify-center items-center flex-col relative"
       >
-        <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 sm:text-4xl text-3xl font-bold mb-16">
-          <h1>
-            Money<span className="text-[#FF7000]">Flow</span>
-          </h1>
-          <span className="font-medium hidden md:block">|</span>
-          <h1 className="font-semibold font-noto-sans">
-            당신의 효율적인 돈 관리 파트너
-          </h1>
+        <Image
+          src={"/images/auth-dark.webp"}
+          alt="hero_section"
+          fill
+          className="absolute"
+        />
+        <div className="flex justify-center items-center flex-col z-10">
+          <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 sm:text-4xl text-3xl font-bold mb-16">
+            <h1>
+              Money<span className="text-[#FF7000]">Flow</span>
+            </h1>
+            <span className="font-medium hidden md:block">|</span>
+            <h1 className="font-semibold font-noto-sans">
+              당신의 효율적인 돈 관리 파트너
+            </h1>
+          </div>
+          <p className="sm:text-xl text-lg font-medium font-noto-sans text-gray-500">
+            &quot;효율적인 돈 관리의 시작.&quot;
+          </p>
+          <p className="text-lg sm:text-xl font-medium font-noto-sans text-gray-500">
+            예산 설정, 지출 추적, 그리고 재정 목표 달성을 위한 완벽한 도구.
+          </p>
+          <Link
+            href="/sign-in"
+            className="sm:mt-20 mt-14 px-8 py-3.5 font-bold font-noto-sans sm:text-xl text-lg bg-[#FF7000] rounded-full"
+          >
+            지금바로 시작하기
+          </Link>
         </div>
-        <p className="sm:text-xl text-lg font-medium font-noto-sans text-gray-500">
-          &quot;효율적인 돈 관리의 시작.&quot;
-        </p>
-        <p className="text-lg sm:text-xl font-medium font-noto-sans text-gray-500">
-          예산 설정, 지출 추적, 그리고 재정 목표 달성을 위한 완벽한 도구.
-        </p>
-        <Link
-          href="/sign-in"
-          className="sm:mt-20 mt-14 px-8 py-3.5 font-bold font-noto-sans sm:text-xl text-lg bg-[#FF7000] rounded-full"
-        >
-          지금바로 시작하기
-        </Link>
       </section>
       <section className="md:pt-32 pt-8 md:px-40 px-8">
         <Image
