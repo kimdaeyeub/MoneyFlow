@@ -77,7 +77,6 @@ const page = () => {
         id="home"
         className="py-56 px-10 text-white flex justify-center items-center flex-col relative"
       >
-
         <Image
           src={"/images/auth-dark.webp"}
           alt="hero_section"
@@ -90,24 +89,21 @@ const page = () => {
               Money<span className="text-[#FF7000]">Flow</span>
             </h1>
             <span className="font-medium hidden md:block">|</span>
-            <h1 className="font-semibold font-noto-sans">
-              당신의 효율적인 돈 관리 파트너
-            </h1>
+            <h1 className="font-semibold">당신의 효율적인 돈 관리 파트너</h1>
           </div>
-          <p className="sm:text-xl text-lg font-medium font-noto-sans text-gray-500">
+          <p className="sm:text-xl text-lg font-medium text-gray-500">
             &quot;효율적인 돈 관리의 시작.&quot;
           </p>
-          <p className="text-lg sm:text-xl font-medium font-noto-sans text-gray-500">
+          <p className="text-lg sm:text-xl font-medium text-gray-500">
             예산 설정, 지출 추적, 그리고 재정 목표 달성을 위한 완벽한 도구.
           </p>
           <Link
             href="/sign-in"
-            className="sm:mt-20 mt-14 px-8 py-3.5 font-bold font-noto-sans sm:text-xl text-lg bg-[#FF7000] rounded-full"
+            className="sm:mt-20 mt-14 px-8 py-3.5 font-bold sm:text-xl text-lg bg-[#FF7000] rounded-full"
           >
             지금바로 시작하기
           </Link>
         </div>
-
       </section>
       <section className="md:pt-32 pt-8 md:px-40 px-8">
         <Image
