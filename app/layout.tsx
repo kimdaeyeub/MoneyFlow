@@ -60,7 +60,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html className="scroll-smooth" lang="ko-kr" suppressHydrationWarning>
-      <body className={`${notoSans.variable} antialiased scrollbar-hide`}>
+      <body
+        className={`${notoSans.variable} antialiased scrollbar-hide md:font-noto-sans`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

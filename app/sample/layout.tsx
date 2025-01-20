@@ -29,7 +29,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         </Link>
 
         <Link
-          className="hidden md:block btn-bg px-4 py-2 text-white rounded-lg font-bold font-noto-sans"
+          className="hidden md:block btn-bg px-4 py-2 text-white rounded-lg font-bold"
           href={"/sign-in"}
         >
           시작하기
