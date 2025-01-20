@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 const notoSans = localFont({
   src: "./fonts/NotoSansVF.ttf",
@@ -13,6 +14,18 @@ const notoSans = localFont({
 export const metadata: Metadata = {
   title: { template: "MoneyFlow | %s", default: "MoneyFlow" },
   description: "돈 관리를 체계적이고, 시각적으로",
+  keywords: [
+    "돈 관리",
+    "돈 관리 솔루션",
+    "돈 관리 앱",
+    "돈 관리 도구",
+    "MoneyFlow",
+    "돈 관리 도구 추천",
+    "돈 관리 도구 추천 2025",
+    "돈 관리 도구 추천 2025",
+    "체계적인 돈 관리",
+    "시각적인 돈 관리",
+  ],
   verification: {
     google: "cwiFwSNi7XWYd2f2LAHNn4Klwf17ebD_55VRkgtU9Ew",
   },
@@ -48,7 +61,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html className="scroll-smooth" lang="ko-kr" suppressHydrationWarning>
-      <body className={`${notoSans.variable} antialiased scrollbar-hide`}>
+      <body
+        className={`${notoSans.variable} antialiased scrollbar-hide md:font-noto-sans`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -56,6 +71,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics />
           <SpeedInsights />
         </ThemeProvider>
       </body>

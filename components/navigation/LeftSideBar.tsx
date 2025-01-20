@@ -27,7 +27,7 @@ const LeftSideBar = async ({ sample }: { sample?: boolean }) => {
           />
         ))}
       </div>
-      {/* TODO:샘플모드에서는 추가 버튼이 동작하면 안된다 대체품 필요 */}
+
       {!sample && userId && <AddExpenseBtn />}
     </section>
   );

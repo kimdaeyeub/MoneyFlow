@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /dashboard
+Disallow: /graph
+Disallow: /today
+Disallow: /this-week
+Disallow: /categories/
+
+Sitemap: https://getmoneyflow.vercel.app/sitemap.xml

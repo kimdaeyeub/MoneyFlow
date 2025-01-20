@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "MoneyFlow | 홈",
+  title: "MoneyFlow",
   description:
     "가계부를 체계적이고 시각적으로 관리하세요. 예산 관리, 지출 분석, 통계 대시보드 기능으로 최적화된 돈 관리 솔루션을 지금 만나보세요!",
 };
@@ -77,6 +77,7 @@ const page = () => {
         id="home"
         className="py-56 px-10 text-white flex justify-center items-center flex-col relative"
       >
+
         <Image
           src={"/images/auth-dark.webp"}
           alt="hero_section"
@@ -106,6 +107,7 @@ const page = () => {
             지금바로 시작하기
           </Link>
         </div>
+
       </section>
       <section className="md:pt-32 pt-8 md:px-40 px-8">
         <Image
@@ -118,10 +120,10 @@ const page = () => {
         />
       </section>
       <section className="md:py-40 py-20 px-10 flex flex-col justify-center items-center gap-5 max-w-3xl text-center mx-auto">
-        <h1 className="text-slate-200 font-bold md:text-3xl text-2xl font-noto-sans">
+        <h1 className="text-slate-200 font-bold md:text-3xl text-2xl">
           &quot;효율적인 돈 관리의 시작.&quot;
         </h1>
-        <p className="md:text-lg font-medium font-noto-sans text-gray-500">
+        <p className="md:text-lg font-medium text-gray-500">
           시간에 따라 변화하는 지출 데이터를 직관적으로 파악할 수 있는 다양한
           뷰를 제공하는 MoneyFlow는 재정 관리의 효율성을 극대화합니다. 예산
           설정과 지출 추적은 물론, 당신의 재정 목표 달성에 맞춰 맞춤형 추천을
@@ -129,14 +131,14 @@ const page = () => {
           분석할 수 있어, 재정적으로 더 나은 미래를 향해 나아갈 수 있는 최적의
           도구로 자리잡을 것입니다.
         </p>
-        <p className="md:mt-5 md:text-lg font-medium font-noto-sans text-gray-500">
+        <p className="md:mt-5 md:text-lg font-medium text-gray-500">
           MoneyFlow와 함께라면, 언제 어디서나 효율적인 돈 관리를 경험할 수
           있습니다.
         </p>
 
         <Link
           href={"/sample/dashboard"}
-          className="md:mt-12 mt-7 md:px-10 px-8 md:py-3 py-2.5 font-bold font-noto-sans md:text-lg bg-[#FF7000] rounded-full"
+          className="md:mt-12 mt-7 md:px-10 px-8 md:py-3 py-2.5 font-bold md:text-lg bg-[#FF7000] rounded-full"
         >
           둘러보기
         </Link>
@@ -150,11 +152,11 @@ const page = () => {
           className="w-full"
         />
         <div className="flex flex-col justify-center gap-6 items-start">
-          <div className="md:text-2xl text-xl font-bold font-noto-sans text-slate-200">
+          <div className="md:text-2xl text-xl font-bold text-slate-200">
             <h1>손쉬운 목표 달성,</h1>
             <h1>똑똑한 소비 관리</h1>
           </div>
-          <p className="md:text-lg font-medium font-noto-sans text-gray-500">
+          <p className="md:text-lg font-medium text-gray-500">
             하루, 1주일, 1달 단위로 지출 목표를 설정하고 실시간으로 진행 상황을
             확인하세요. 직관적인 시각적 도구로 더 나은 소비 습관을 만들어
             보세요.
@@ -163,11 +165,11 @@ const page = () => {
       </section>
       <section className="md:px-20 px-10 md:grid md:grid-cols-2 flex flex-col-reverse w-full md:py-52 py-32 gap-14 bg-black">
         <div className="flex flex-col justify-center gap-6 items-start">
-          <div className="md:text-2xl text-xl font-bold font-noto-sans text-slate-200">
+          <div className="md:text-2xl text-xl font-bold text-slate-200">
             <h1>한눈에 보는 지출 데이터,</h1>
             <h1>시각적인 소비 관리</h1>
           </div>
-          <p className="md:text-lg font-medium font-noto-sans text-gray-500">
+          <p className="md:text-lg font-medium text-gray-500">
             3개월, 1달, 1주일 단위로 제공되는 그래프를 통해 지출 데이터를
             시각적으로 확인하세요. 길게는 3개월, 짧게는 1주일의 흐름을 한눈에
             파악하며 소비 패턴을 분석하고, 더 현명한 재정 결정을 내릴 수
@@ -186,9 +188,7 @@ const page = () => {
         id="feature"
         className="flex flex-col justify-center items-center md:pt-40 pt-20 px-10 pb-32"
       >
-        <h1 className="text-3xl font-bold font-noto-sans text-slate-200">
-          Features
-        </h1>
+        <h1 className="text-3xl font-bold text-slate-200">Features</h1>
         <div className="max-w-4xl mt-20 mx-auto grid md:grid-cols-2 grid-cols-1 md:gap-20 gap-7">
           {features.map((feature, index) => (
             <div
@@ -212,13 +212,11 @@ const page = () => {
                     d="m4.5 12.75 6 6 9-13.5"
                   ></path>
                 </svg>
-                <h2 className="text-xl font-bold font-noto-sans text-slate-200">
+                <h2 className="text-xl font-bold text-slate-200">
                   {feature.title}
                 </h2>
               </div>
-              <p className="font-medium font-noto-sans text-gray-500">
-                {feature.description}
-              </p>
+              <p className="font-medium text-gray-500">{feature.description}</p>
             </div>
           ))}
         </div>

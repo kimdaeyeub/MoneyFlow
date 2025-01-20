@@ -1,62 +1,17 @@
-/** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: "https://getmoneyflow.vercel.app",
-  generateRobotsTxt: true,
-  sitemapSize: 7000,
-  changefreq: "daily",
-  priority: 0.7,
-  exclude: ["/sign-in", "/create-account", "/github/start", "/github/complete"],
-  transform: async (config, path) => {
-    const publicPaths = [
-      "/sign-in",
-      "/create-account",
-      "/github/start",
-      "/github/complete",
-    ];
-
-    const privatePaths = ["/", "/today", "/graph", "/this-week"];
-
-    if (path.startsWith("/categories/")) {
-      return {
-        loc: path,
-        priority: config.priority,
-        changefreq: config.changefreq,
-      };
-    }
-
-    if (publicPaths.includes(path)) {
-      return {
-        loc: path,
-        priority: 1.0,
-        changefreq: "daily",
-      };
-    }
-
-    if (privatePaths.includes(path)) {
-      return {
-        loc: path,
-        priority: config.priority,
-        changefreq: config.changefreq,
-      };
-    }
-
-    return null;
-  },
+  generateRobotsTxt: true, // robots.txt 파일 생성
   robotsTxtOptions: {
-    policies: [
+    rules: [
       {
         userAgent: "*",
-        allow: [
-          "/sign-in",
-          "/create-account",
-          "/github/start",
-          "/github/complete",
-        ],
-      },
-      {
-        userAgent: "*",
-        disallow: ["/", "/today", "/graph", "/this-week", "/categories/*"],
+        allow: "/",
+        disallow: ["/dashboard", "/graph", "/today", "/this-week"],
       },
     ],
   },
+  sitemapSize: 7000, // 7000개 이상의 URL이 있을 경우 자동으로 분할
+  changefreq: "weekly",
+  priority: 0.7,
+  exclude: ["/dashboard", "/graph", "/today", "/this-week"], // 제외할 페이지
 };
