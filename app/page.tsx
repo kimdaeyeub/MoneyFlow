@@ -59,7 +59,7 @@ const features: IFeature[] = [
 
 const page = () => {
   return (
-    <>
+    <div className="bg-black">
       <nav className="w-full sm:px-16 px-5 py-3 fixed bg-[#121212] bg-opacity-90 z-50 flex justify-between items-center">
         <Link href="/" className="flex gap-1 justify-center items-center">
           <Image src="/icons/logo.png" width={40} height={40} alt="logo" />
@@ -88,8 +88,8 @@ const page = () => {
             <h1>
               Money<span className="text-[#FF7000]">Flow</span>
             </h1>
-            <span className="font-medium hidden md:block">|</span>
-            <h1 className="font-semibold">당신의 효율적인 돈 관리 파트너</h1>
+            {/* <span className="font-medium hidden md:block">|</span>
+            <h1 className="font-semibold">당신의 효율적인 돈 관리 파트너</h1> */}
           </div>
           <p className="sm:text-xl text-lg font-medium text-gray-500">
             &quot;효율적인 돈 관리의 시작.&quot;
@@ -134,7 +134,7 @@ const page = () => {
 
         <Link
           href={"/sample/dashboard"}
-          className="md:mt-12 mt-7 md:px-10 px-8 md:py-3 py-2.5 font-bold md:text-lg bg-[#FF7000] rounded-full"
+          className="md:mt-12 mt-7 md:px-10 px-8 md:py-3 py-2.5 font-bold md:text-lg text-white bg-[#FF7000] rounded-full"
         >
           둘러보기
         </Link>
@@ -217,7 +217,7 @@ const page = () => {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
