@@ -81,15 +81,15 @@ const page = () => {
           src={"/images/auth-dark.webp"}
           alt="hero_section"
           fill
-          className="absolute"
+          className="absolute md:block hidden"
         />
         <div className="flex justify-center items-center flex-col z-10">
-          <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 sm:text-5xl text-3xl font-bold mb-16">
+          <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 md:text-4xl text-3xl font-bold mb-16">
             <h1>
               Money<span className="text-[#FF7000]">Flow</span>
             </h1>
-            {/* <span className="font-medium hidden md:block">|</span>
-            <h1 className="font-semibold">당신의 효율적인 돈 관리 파트너</h1> */}
+            <span className="font-medium hidden md:block">|</span>
+            <h1 className="font-semibold">당신의 효율적인 돈 관리 파트너</h1>
           </div>
           <p className="sm:text-xl text-lg font-medium text-gray-500">
             &quot;효율적인 돈 관리의 시작.&quot;
