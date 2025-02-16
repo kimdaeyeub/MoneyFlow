@@ -62,7 +62,14 @@ const page = () => {
     <div className="bg-black">
       <nav className="w-full sm:px-16 px-5 py-3 fixed bg-[#121212] bg-opacity-90 z-50 flex justify-between items-center">
         <Link href="/" className="flex gap-1 justify-center items-center">
-          <Image src="/icons/logo.png" width={40} height={40} alt="logo" />
+          <Image
+            src="/icons/logo.png"
+            width={40}
+            height={40}
+            alt="logo"
+            quality={90}
+            sizes="40px"
+          />
           <p className="text-2xl font-bold text-white">
             Money<span className="text-[#FF7000]">Flow</span>
           </p>
@@ -81,7 +88,10 @@ const page = () => {
           src={"/images/auth-dark.webp"}
           alt="hero_section"
           fill
-          className="absolute md:block hidden"
+          quality={80}
+          sizes="(max-width: 768px) 100vw, 100vw"
+          priority
+          className="absolute md:block hidden object-cover"
         />
         <div className="flex justify-center items-center flex-col z-10">
           <div className="flex md:flex-row flex-col justify-center items-center gap-2.5 md:text-4xl text-3xl font-bold mb-16">
@@ -109,10 +119,12 @@ const page = () => {
         <Image
           className="w-full bg-cover"
           src="/images/dashboard.png"
-          width={500}
-          height={500}
-          // alt="대시보드뷰 홍보이미지"
+          width={1200}
+          height={675}
           alt="dashboard"
+          quality={75}
+          priority
+          sizes="(max-width: 768px) 100vw, 1200px"
         />
       </section>
       <section className="md:py-40 py-20 px-10 flex flex-col justify-center items-center gap-5 max-w-3xl text-center mx-auto">
@@ -143,9 +155,11 @@ const page = () => {
         <Image
           src="/images/goal.png"
           alt="goal_landing"
-          width={500}
-          height={500}
+          width={800}
+          height={600}
           className="w-full"
+          quality={75}
+          sizes="(max-width: 768px) 100vw, 800px"
         />
         <div className="flex flex-col justify-center gap-6 items-start">
           <div className="md:text-2xl text-xl font-bold text-slate-200">
@@ -175,9 +189,11 @@ const page = () => {
         <Image
           src="/images/graph.png"
           alt="graph_landing"
-          width={500}
-          height={500}
+          width={800}
+          height={600}
           className="w-full"
+          quality={75}
+          sizes="(max-width: 768px) 100vw, 800px"
         />
       </section>
       <section
